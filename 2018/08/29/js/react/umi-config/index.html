@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>极快的类 Next.js 的 React 应用框架。 | 素伯的博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="react,umi" />
+    
+    <meta name="description" content="umi，中文可发音为乌米，是一个可插拔的企业级 react 应用框架。umi 以路由为基础的，支持类 next.js 的约定式路由，以及各种进阶的路由功能，并以此进行功能扩展，比如支持路由级的按需加载。然后配以完善的插件体系，覆盖从源码到构建产物的每个生命周期，支持各种功能扩展和业务需求，目前内外部加起来已有 50+ 的插件。umi 是蚂蚁金服的底层前端框架，已直接或间接地服务了 600+ 应用">
+<meta name="keywords" content="react,umi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极快的类 Next.js 的 React 应用框架。">
+<meta property="og:url" content="http://blog.mrsuper.top/2018/08/29/js/react/umi-config/index.html">
+<meta property="og:site_name" content="素伯的博客">
+<meta property="og:description" content="umi，中文可发音为乌米，是一个可插拔的企业级 react 应用框架。umi 以路由为基础的，支持类 next.js 的约定式路由，以及各种进阶的路由功能，并以此进行功能扩展，比如支持路由级的按需加载。然后配以完善的插件体系，覆盖从源码到构建产物的每个生命周期，支持各种功能扩展和业务需求，目前内外部加起来已有 50+ 的插件。umi 是蚂蚁金服的底层前端框架，已直接或间接地服务了 600+ 应用">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://asset.mrsuper.top/blog/concept/thumb/umi-react.png">
+<meta property="og:updated_time" content="2018-09-06T09:30:51.802Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="极快的类 Next.js 的 React 应用框架。">
+<meta name="twitter:description" content="umi，中文可发音为乌米，是一个可插拔的企业级 react 应用框架。umi 以路由为基础的，支持类 next.js 的约定式路由，以及各种进阶的路由功能，并以此进行功能扩展，比如支持路由级的按需加载。然后配以完善的插件体系，覆盖从源码到构建产物的每个生命周期，支持各种功能扩展和业务需求，目前内外部加起来已有 50+ 的插件。umi 是蚂蚁金服的底层前端框架，已直接或间接地服务了 600+ 应用">
+<meta name="twitter:image" content="http://asset.mrsuper.top/blog/concept/thumb/umi-react.png">
+    
+
+    
+
+    
+        <link rel="icon" href="http://asset.mrsuper.top/blog/common/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?332745ca7f7a79c80b88afce194a5725";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">生死有命 富贵在天 —— 2018</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/">CSS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/English/">English</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/">JavaScript</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Module/">Module</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Node/">Node</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/React/">React</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Vue/">Vue</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/">Linux</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Database/">Database</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Docker/">Docker</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/System/">System</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Tools/">Tools</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/">Live</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Car/">Car</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Casual/">Casual</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Work/">Work</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Other/">Other</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Other/HTTP/">HTTP</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/JavaScript/">JavaScript</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/JavaScript/React/">React</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-js/react/umi-config" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        极快的类 Next.js 的 React 应用框架。
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/08/29/js/react/umi-config/" class="article-date">
+            <time datetime="2018-08-28T16:58:58.000Z" itemprop="datePublished">2018-08-28</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/react/">react</a>, <a class="tag-link" href="/tags/umi/">umi</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <blockquote>
+<p>umi，中文可发音为乌米，是一个可插拔的企业级 react 应用框架。umi 以路由为基础的，支持<a href="https://umijs.org/zh/guide/router.html" target="_blank" rel="noopener">类 next.js 的约定式路由</a>，以及各种进阶的路由功能，并以此进行功能扩展，比如支持<a href="https://umijs.org/zh/plugin/umi-plugin-react.html#dynamicimport" target="_blank" rel="noopener">路由级的按需加载</a>。然后配以完善的<a href="https://umijs.org/zh/plugin/" target="_blank" rel="noopener">插件体系</a>，覆盖从源码到构建产物的每个生命周期，支持各种功能扩展和业务需求，目前内外部加起来已有 50+ 的插件。<br>umi 是蚂蚁金服的底层前端框架，已直接或间接地服务了 600+ 应用，包括 java、node、H5 无线、离线（Hybrid）应用、纯前端 assets 应用、CMS 应用等。他已经很好地服务了我们的内部用户，同时希望他也能服务好外部用户。</p>
+</blockquote>
+<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><p>很久很久以前，他叫<code>五米</code>，后面就成了<code>乌米</code>！我就懒得改了，乳名才富有亲切感。</p>
+<ul>
+<li><a href="https://umijs.org/" target="_blank" rel="noopener">五米 - 官网</a></li>
+<li><a href="https://github.com/umijs/umi" target="_blank" rel="noopener">GitHub</a></li>
+<li><a href="https://umijs.org/zh/" target="_blank" rel="noopener">不知不觉，五米 - 官网新增了中文版，果然效率</a></li>
+</ul>
+<h3 id="0-安装与初始化"><a href="#0-安装与初始化" class="headerlink" title="0. 安装与初始化"></a>0. 安装与初始化</h3><p>基于 linux 系统开发，并使用 yarn 包管理工具</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 全局 umi 命令</span></span><br><span class="line">yarn global add umi</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建项目主目录</span></span><br><span class="line">mkdir myumi &amp;&amp; <span class="built_in">cd</span> myumi</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用脚手架生成页面</span></span><br><span class="line"><span class="comment"># 建议手动新建，将 `page/` 存放与 `src/` 目录下</span></span><br><span class="line">umi generate page index</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动项目</span></span><br><span class="line"><span class="comment"># 自动打开浏览器</span></span><br><span class="line"><span class="comment"># 每次修改了配置文件，都会重新打开一个新页面，不适合开发</span></span><br><span class="line">umi dev</span><br><span class="line"><span class="comment"># 建议带上参数 BROWSER=none，后面会写入配置文件</span></span><br><span class="line"><span class="comment"># BROWSER=none umi dev</span></span><br></pre></td></tr></table></figure>
+<h4 id="0-1-create-umi-脚手架"><a href="#0-1-create-umi-脚手架" class="headerlink" title="0.1 create-umi 脚手架"></a>0.1 create-umi 脚手架</h4><p><code>Umi</code> 2018-09-02 17:48:57 更新了脚手架，与 <code>vue-cli v3</code> 一样，可以界面式的自定义构建项目配置，nice！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir myumi &amp;&amp; <span class="built_in">cd</span> myumi</span><br><span class="line">yarm create umi</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一顿操作之后 ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动即可</span></span><br><span class="line">yarn start</span><br></pre></td></tr></table></figure>
+<h3 id="1-约定式目录"><a href="#1-约定式目录" class="headerlink" title="1. 约定式目录"></a>1. 约定式目录</h3><ul>
+<li><code>dist/</code>：默认打包目录</li>
+<li><code>mock/</code>：模拟 API 路径</li>
+<li><code>src/</code>：源码路径（可选，建议加上）</li>
+<li><code>src/page</code>：路由目录（建议使用<code>约定式路由</code>）</li>
+<li><code>src/layouts</code>：全局布局</li>
+<li><code>config/config.js</code>：umi 配置（不选用）</li>
+<li><code>.umirc.js</code>：umi 配置（推荐使用）</li>
+<li><code>.env</code>：环境变量配置</li>
+</ul>
+<h4 id="1-0-Umi-配置"><a href="#1-0-Umi-配置" class="headerlink" title="1.0 Umi 配置"></a>1.0 Umi 配置</h4><ul>
+<li><a href="https://umijs.org/config/" target="_blank" rel="noopener">umi</a></li>
+<li><a href="https://umijs.org/config/#webpack" target="_blank" rel="noopener">webpack</a></li>
+<li><a href="https://umijs.org/plugin/umi-plugin-react.html#install" target="_blank" rel="noopener">umi-plugin-react</a></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// .umirc.js 配置文件</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">resolve</span> (<span class="params">dir</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> path.join(__dirname, dir)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="comment">// 使用 hash 路径</span></span><br><span class="line">  <span class="comment">// 不建议使用，除非有不可抗因素...</span></span><br><span class="line">  <span class="comment">// history: 'hash',</span></span><br><span class="line"></span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">// umi 插件配置</span></span><br><span class="line">    <span class="comment">// 记得安装：yarn add umi-plugin-react</span></span><br><span class="line">    <span class="comment">// umi-plugin-react 是插件集，默认所有不开启</span></span><br><span class="line">    [<span class="string">'umi-plugin-react'</span>, &#123;</span><br><span class="line">      <span class="comment">// 使用 dva</span></span><br><span class="line">      dva: &#123;</span><br><span class="line">        immer: <span class="literal">true</span>,</span><br><span class="line">        dynamicImport: <span class="literal">true</span>,</span><br><span class="line">        hmr: <span class="literal">true</span></span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 使用 antd ui</span></span><br><span class="line">      antd: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 配置所有页面的默认 title</span></span><br><span class="line">      title: &#123;</span><br><span class="line">        defaultTitle: <span class="string">'web H5'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;]</span><br><span class="line">  ],</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 配置目录别名 `alias`</span></span><br><span class="line">  chainWebpack (config, &#123; webpack &#125;) &#123;</span><br><span class="line">    config.resolve.alias.set(<span class="string">'$api'</span>, resolve(<span class="string">'src/api'</span>))</span><br><span class="line">    config.resolve.alias.set(<span class="string">'$components'</span>, resolve(<span class="string">'src/components'</span>))</span><br><span class="line">    config.resolve.alias.set(<span class="string">'$utils'</span>, resolve(<span class="string">'src/utils'</span>))</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 使用 sass</span></span><br><span class="line">  <span class="comment">// 记得安装：yarn add node-sass sass-loader</span></span><br><span class="line">  sass: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-1-环境变量配置"><a href="#1-1-环境变量配置" class="headerlink" title="1.1 环境变量配置"></a>1.1 环境变量配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 每次启动或修改配置文件，不再打开浏览器新页面</span></span><br><span class="line">BROWSER=none</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定端口</span></span><br><span class="line">PORT=8090</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-Mock-API"><a href="#1-2-Mock-API" class="headerlink" title="1.2 Mock API"></a>1.2 Mock API</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// mock/rules.js 配置</span></span><br><span class="line"><span class="keyword">const</span> Mock = <span class="built_in">require</span>(<span class="string">'mockjs'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="string">'get /rules'</span>: <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 模拟延迟</span></span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 设置请求头</span></span><br><span class="line">      res.setHeader(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'*'</span>)</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 返回数据</span></span><br><span class="line">      res.json(&#123;</span><br><span class="line">        result: Mock.mock(&#123;</span><br><span class="line">          <span class="string">'data|10'</span>: [&#123;</span><br><span class="line">            name: <span class="string">'@cname'</span>,</span><br><span class="line">            about: <span class="string">'@cparagraph'</span>,</span><br><span class="line">            birthday: <span class="string">'@datetime'</span>,</span><br><span class="line">            address: <span class="string">'@city(true)'</span>,</span><br><span class="line">            avatar: <span class="string">'@image(100x100, @color)'</span>,</span><br><span class="line">            <span class="string">'gender|0-2'</span>: <span class="number">0</span></span><br><span class="line">          &#125;]</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;, <span class="number">1600</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-3-约定式路由"><a href="#1-3-约定式路由" class="headerlink" title="1.3 约定式路由"></a>1.3 约定式路由</h4><ul>
+<li><code>src/pages/404.js</code>：404 页面，开发环境中，不会触发，但是可以输入 <code>/404</code> 访问！</li>
+<li><code>src/pages/document.ejs</code>：HTML 模板</li>
+<li><code>src/pages/user/$id.js</code>：动态路由，id 为 <code>match.params.id</code> 参数</li>
+<li><code>src/pages/user/modules/user.js</code>：dva 的配置，不需要指定 <code>namespace</code>，默认为文件名 <code>user</code></li>
+<li><code>src/pages/user/module.js</code>：dva 的配置，当 module 为单个时，建议使用这种方式，但需要指明 <code>namespace: &#39;user&#39;</code></li>
+<li><code>src/pages/course/$id$.js</code>：动态并且可选路由，id 为 <code>match.params.id</code> 参数，可能为 null</li>
+<li><code>src/pages/list/_layout.js</code>：嵌套路由，<code>list/</code> 目录下面所有页面都基于 <code>_layout.js</code></li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://blog.mrsuper.top/2018/08/29/js/react/umi-config/" data-id="cjlq7z9u300157zzlrhzenib8" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="SOHUCS" sid="http://blog.mrsuper.top/2018/08/29/js/react/umi-config/"></div>
+
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/linzechao" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="https://weibo.com/superchao4444" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="renren" href="http://www.renren.com/358733940" target="_blank">
+                        <i class="icon fa fa-renren"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="pinterest-square" href="http://t.qq.com/linzechao" target="_blank">
+                        <i class="icon fa fa-pinterest-square"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="whatsapp" href="https://disqus.com/by/disqus_bOa47tDqFp/" target="_blank">
+                        <i class="icon fa fa-whatsapp"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/09/02/css/preprocessor/css/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            样式层叠表 CSS
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/08/19/linux/toots/shell/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">一键打包，一键部署？ Shell 脚本语言</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/09/06/other/wx/applet/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/wx-applet.jpeg)" alt="微信小程序，了解一下！" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Other/">Other</a></p>
+                            <p class="item-title"><a href="/2018/09/06/other/wx/applet/" class="title">微信小程序，了解一下！</a></p>
+                            <p class="item-date"><time datetime="2018-09-06T15:17:47.000Z" itemprop="datePublished">2018-09-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/09/06/other/project/js-tools/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/clipboard.png)" alt="实际开发中“超实用工具/插件”" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Other/">Other</a></p>
+                            <p class="item-title"><a href="/2018/09/06/other/project/js-tools/" class="title">实际开发中“超实用工具/插件”</a></p>
+                            <p class="item-date"><time datetime="2018-09-06T14:29:23.000Z" itemprop="datePublished">2018-09-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/09/02/css/preprocessor/css/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/css.jpeg)" alt="样式层叠表 CSS" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CSS/">CSS</a></p>
+                            <p class="item-title"><a href="/2018/09/02/css/preprocessor/css/" class="title">样式层叠表 CSS</a></p>
+                            <p class="item-date"><time datetime="2018-09-02T14:29:23.000Z" itemprop="datePublished">2018-09-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/29/js/react/umi-config/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/umi-react.png)" alt="极快的类 Next.js 的 React 应用框架。" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/JavaScript/React/">React</a></p>
+                            <p class="item-title"><a href="/2018/08/29/js/react/umi-config/" class="title">极快的类 Next.js 的 React 应用框架。</a></p>
+                            <p class="item-date"><time datetime="2018-08-28T16:58:58.000Z" itemprop="datePublished">2018-08-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/19/linux/toots/shell/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/shell.jpg)" alt="一键打包，一键部署？ Shell 脚本语言" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Linux/">Linux</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Linux/Tools/">Tools</a></p>
+                            <p class="item-title"><a href="/2018/08/19/linux/toots/shell/" class="title">一键打包，一键部署？ Shell 脚本语言</a></p>
+                            <p class="item-date"><time datetime="2018-08-18T21:57:09.000Z" itemprop="datePublished">2018-08-18</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/applet/" style="font-size: 10px;">applet</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/casual/" style="font-size: 10px;">casual</a> <a href="/tags/command/" style="font-size: 10px;">command</a> <a href="/tags/create-react-app/" style="font-size: 10px;">create-react-app</a> <a href="/tags/cross-domain/" style="font-size: 10px;">cross domain</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/driving-car/" style="font-size: 10px;">driving car</a> <a href="/tags/english/" style="font-size: 12px;">english</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/gvim/" style="font-size: 10px;">gvim</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/interview/" style="font-size: 12px;">interview</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/linux/" style="font-size: 18px;">linux</a> <a href="/tags/live/" style="font-size: 12px;">live</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/module/" style="font-size: 14px;">module</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/other/" style="font-size: 14px;">other</a> <a href="/tags/react/" style="font-size: 16px;">react</a> <a href="/tags/redux/" style="font-size: 10px;">redux</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/system/" style="font-size: 12px;">system</a> <a href="/tags/tools/" style="font-size: 20px;">tools</a> <a href="/tags/umi/" style="font-size: 10px;">umi</a> <a href="/tags/vue/" style="font-size: 12px;">vue</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/work/" style="font-size: 12px;">work</a> <a href="/tags/wx/" style="font-size: 10px;">wx</a> <a href="/tags/zero-based/" style="font-size: 16px;">zero-based</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com">Github</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.aliyun.com">AliYun</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/ppoffice/hexo-theme-hueman">Hueman</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.qiniu.com">QiNiu</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://changyan.kuaizhan.com">ChangYan</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://coding.net">Coding</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Super</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+                <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytENM45X"></script>
+    <script type="text/javascript">
+        (function() {
+            var appid = 'cytENM45X';
+            var conf = 'cecbda85f26c31168a76fef4aaa3b6e8';
+            var width = window.innerWidth || document.documentElement.clientWidth;
+            if (width < 960) {
+                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+            } else {
+                var loadJs = function(d, a) {
+                    var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+                    var b = document.createElement("script");
+                    b.setAttribute("type", "text/javascript");
+                    b.setAttribute("charset", "UTF-8");
+                    b.setAttribute("src", d);
+                    if (typeof a === "function") {
+                        if (window.attachEvent) {
+                            b.onreadystatechange = function() {
+                                var e = b.readyState;
+                                if (e === "loaded" || e === "complete") {
+                                    b.onreadystatechange = null;
+                                    a()
+                                }
+                            }
+                        } else {
+                            b.onload = a
+                        }
+                    }
+                    c.appendChild(b)
+                };
+                loadJs("https://changyan.sohu.com/upload/changyan.js", function() {
+                    window.changyan.api.config({
+                        appid: appid,
+                        conf: conf
+                    })
+                });
+            }
+        })();
+    </script>
+
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
