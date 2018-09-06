@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>最美排版语言 Markdown | 素伯的博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="tools,markdown" />
+    
+    <meta name="description" content="百度百科：Markdown 是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。Markdown 具有一系列衍生版本，用于扩展 Markdown 的功能（如表格、脚注、内嵌 HTML 等等），这些功能原初的 Markdown 尚不具备，它们能让 Markdown 转换成更多的格式，例如 LaTeX，Docbook。Markdown 增强版中比较有名">
+<meta name="keywords" content="tools,markdown">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最美排版语言 Markdown">
+<meta property="og:url" content="http://blog.mrsuper.top/2017/11/18/linux/toots/markdown/index.html">
+<meta property="og:site_name" content="素伯的博客">
+<meta property="og:description" content="百度百科：Markdown 是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。Markdown 具有一系列衍生版本，用于扩展 Markdown 的功能（如表格、脚注、内嵌 HTML 等等），这些功能原初的 Markdown 尚不具备，它们能让 Markdown 转换成更多的格式，例如 LaTeX，Docbook。Markdown 增强版中比较有名">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://asset.mrsuper.top/blog/concept/thumb/markdown.jpg">
+<meta property="og:updated_time" content="2018-08-03T02:05:36.714Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="最美排版语言 Markdown">
+<meta name="twitter:description" content="百度百科：Markdown 是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。Markdown 具有一系列衍生版本，用于扩展 Markdown 的功能（如表格、脚注、内嵌 HTML 等等），这些功能原初的 Markdown 尚不具备，它们能让 Markdown 转换成更多的格式，例如 LaTeX，Docbook。Markdown 增强版中比较有名">
+<meta name="twitter:image" content="http://asset.mrsuper.top/blog/concept/thumb/markdown.jpg">
+    
+
+    
+
+    
+        <link rel="icon" href="http://asset.mrsuper.top/blog/common/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?332745ca7f7a79c80b88afce194a5725";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">生死有命 富贵在天 —— 2018</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/English/">English</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/">JavaScript</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Module/">Module</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Node/">Node</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/React/">React</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Vue/">Vue</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/">Linux</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Database/">Database</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Docker/">Docker</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/System/">System</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Tools/">Tools</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/">Live</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Car/">Car</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Casual/">Casual</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Work/">Work</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Other/">Other</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Other/HTTP/">HTTP</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Linux/">Linux</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Linux/Tools/">Tools</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-linux/toots/markdown" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        最美排版语言 Markdown
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/11/18/linux/toots/markdown/" class="article-date">
+            <time datetime="2017-11-17T18:48:12.000Z" itemprop="datePublished">2017-11-17</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/markdown/">markdown</a>, <a class="tag-link" href="/tags/tools/">tools</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <blockquote>
+<p><a href="https://baike.baidu.com/item/markdown" target="_blank" rel="noopener">百度百科</a>：Markdown 是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。<br>Markdown 具有一系列衍生版本，用于扩展 Markdown 的功能（如表格、脚注、内嵌 HTML 等等），这些功能原初的 Markdown 尚不具备，它们能让 Markdown 转换成更多的格式，例如 LaTeX，Docbook。Markdown 增强版中比较有名的有 Markdown Extra、MultiMarkdown、 Maruku 等。这些衍生版本要么基于工具，如 Pandoc；要么基于网站，如 GitHub 和 Wikipedia，在语法上基本兼容，但在一些语法和渲染效果上有改动。</p>
+</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title=" 参考"></a><i class="fa fa-flag-checkered"></i> 参考</h2><ul>
+<li><a href="https://www.zybuluo.com/mdeditor" target="_blank" rel="noopener">Cmd Markdown 编辑阅读器</a></li>
+<li><a href="http://www.markdown.cn/" target="_blank" rel="noopener">Markdown 语法说明</a></li>
+<li><a href="http://fontawesome.dashgame.com/" target="_blank" rel="noopener">支持 Font Awesome 图标</a></li>
+</ul>
+<hr>
+<p><i class="fa fa-header"></i> 标题，与 <code>&lt;h1&gt; &lt;h2&gt; ... &lt;h6&gt;</code>一致</p>
+<h1 id="标题一"><a href="#标题一" class="headerlink" title="标题一"></a>标题一</h1><h2 id="标题二"><a href="#标题二" class="headerlink" title="标题二"></a>标题二</h2><h3 id="标题三"><a href="#标题三" class="headerlink" title="标题三"></a>标题三</h3><h4 id="标题四"><a href="#标题四" class="headerlink" title="标题四"></a>标题四</h4><h5 id="标题五"><a href="#标题五" class="headerlink" title="标题五"></a>标题五</h5><h6 id="标题六"><a href="#标题六" class="headerlink" title="标题六"></a>标题六</h6><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">标题一</span><br><span class="line">========</span><br><span class="line">标题二</span><br><span class="line">--------</span><br><span class="line"><span class="section"># 标题一</span></span><br><span class="line"><span class="section">## 标题二</span></span><br><span class="line"><span class="section">### 标题三</span></span><br><span class="line"><span class="section">#### 标题四</span></span><br><span class="line"><span class="section">##### 标题五</span></span><br><span class="line"><span class="section">###### 标题六</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="区块引用"><a href="#区块引用" class="headerlink" title=" 区块引用"></a><i class="fa fa-quote-left"></i> 区块引用</h2><blockquote>
+<h3 id="小情歌-苏打绿"><a href="#小情歌-苏打绿" class="headerlink" title="小情歌 苏打绿"></a>小情歌 <sub>苏打绿</sub></h3><p>这是一首简单的小情歌<br>唱着人们心肠的曲折<br>我想我很快乐当有你的温热<br>脚边的空气转了</p>
+<blockquote>
+<p>这是一首简单的小情歌<br>唱着我们心头的白鸽<br>我想我很适合当一个歌颂者<br>青春在风中飘着</p>
+<blockquote>
+<p>你知道就算大雨让整座城市颠倒<br>我会给你怀抱<br>受不了看见你背影来到<br>写下我度秒如年难挨的离骚<br>就算整个世界被寂寞绑票<br>我也不会奔跑<br>逃不了最后谁也都苍老<br>写下我时间和琴声交错的城堡</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="quote">&gt; ### 小情歌 &lt;sub&gt;苏打绿&lt;/sub&gt;</span></span><br><span class="line"><span class="quote">&gt; 这是一首简单的小情歌 </span></span><br><span class="line"><span class="quote">&gt; 唱着人们心肠的曲折</span></span><br><span class="line"><span class="quote">&gt; 我想我很快乐当有你的温热</span></span><br><span class="line"><span class="quote">&gt; 脚边的空气转了</span></span><br><span class="line"><span class="quote">&gt; &gt; 这是一首简单的小情歌</span></span><br><span class="line"><span class="quote">&gt; &gt; 唱着我们心头的白鸽</span></span><br><span class="line"><span class="quote">&gt; &gt; 我想我很适合当一个歌颂者</span></span><br><span class="line"><span class="quote">&gt; &gt; 青春在风中飘着</span></span><br><span class="line"><span class="quote">&gt; &gt; &gt; 你知道就算大雨让整座城市颠倒</span></span><br><span class="line"><span class="quote">&gt; &gt; &gt; 我会给你怀抱</span></span><br><span class="line"><span class="quote">&gt; &gt; &gt; 受不了看见你背影来到</span></span><br><span class="line"><span class="quote">&gt; &gt; &gt; 写下我度秒如年难挨的离骚</span></span><br><span class="line"><span class="quote">&gt; &gt; &gt; 就算整个世界被寂寞绑票</span></span><br><span class="line"><span class="quote">&gt; &gt; &gt; 我也不会奔跑</span></span><br><span class="line"><span class="quote">&gt; &gt; &gt; 逃不了最后谁也都苍老</span></span><br><span class="line"><span class="quote">&gt; &gt; &gt; 写下我时间和琴声交错的城堡</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="列表"><a href="#列表" class="headerlink" title=" 列表"></a><i class="fa fa-list"></i> 列表</h2><ul>
+<li>星号列表</li>
+<li>星号列表</li>
+</ul>
+<ul>
+<li>减号也行</li>
+<li>减号也行</li>
+</ul>
+<ul>
+<li>加号也罢</li>
+<li>加号也罢</li>
+</ul>
+<ol>
+<li>有序列表</li>
+<li>需要加上序号</li>
+<li>麻烦</li>
+<li>维护差</li>
+</ol>
+<ul>
+<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.<br>Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,<br>viverra nec, fringilla in, laoreet vitae, risus.</li>
+<li>Donec sit amet nisl. Aliquam semper ipsum sit amet velit.<br>Suspendisse id sem consectetuer libero luctus adipiscing.</li>
+</ul>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">* </span>星号列表</span><br><span class="line"><span class="bullet">* </span>星号列表</span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span>减号也行</span><br><span class="line"><span class="bullet">- </span>减号也行</span><br><span class="line"></span><br><span class="line"><span class="bullet">+ </span>加号也罢</span><br><span class="line"><span class="bullet">+ </span>加号也罢</span><br><span class="line"></span><br><span class="line"><span class="bullet">1. </span>有序列表</span><br><span class="line"><span class="bullet">2. </span>需要加上序号</span><br><span class="line"><span class="bullet">3. </span>麻烦</span><br><span class="line"><span class="bullet">4. </span>维护差</span><br><span class="line"></span><br><span class="line"><span class="bullet">* </span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</span><br><span class="line">Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,</span><br><span class="line">viverra nec, fringilla in, laoreet vitae, risus.</span><br><span class="line"><span class="bullet">* </span>Donec sit amet nisl. Aliquam semper ipsum sit amet velit.</span><br><span class="line">Suspendisse id sem consectetuer libero luctus adipiscing.</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="代码区块"><a href="#代码区块" class="headerlink" title=" 代码区块"></a><i class="fa fa-code"></i> 代码区块</h2><pre><code>public class Brush {
+    public static void main (String args[]) {
+      system.out.print(&quot;Hello World!&quot;);
+    }
+}
+</code></pre><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">使用缩进 tab 键</span><br><span class="line"><span class="code">    public class Brush &#123;</span></span><br><span class="line"><span class="code">        public static void main (String args[]) &#123;</span></span><br><span class="line"><span class="code">          system.out.print("Hello World!");</span></span><br><span class="line"><span class="code">        &#125;</span></span><br><span class="line"><span class="code">    &#125;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="分割符"><a href="#分割符" class="headerlink" title=" 分割符"></a><i class="fa fa-ellipsis-h"></i> 分割符</h2><hr>
+<hr>
+<hr>
+<hr>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">--------</span><br><span class="line"><span class="bullet">- </span>- - -</span><br><span class="line"><span class="bullet">* </span><span class="bullet">* *</span> *</span><br><span class="line"><span class="strong">*****</span>*</span><br><span class="line"></span><br><span class="line">--------</span><br><span class="line"></span><br><span class="line">分隔符，上下空一行，多于 3 个以上的 “-”，如不空行，则会被编译成 <span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span></span>，如上，如下。</span><br><span class="line"></span><br><span class="line">--------</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="区段元素"><a href="#区段元素" class="headerlink" title=" 区段元素"></a><i class="fa fa-link"></i> 区段元素</h2><p><a href="http://baidu.com" title="百度一下" target="_blank" rel="noopener">这是一条去百度的超级链接</a><br><a href="http://google.com" title="Google one time" target="_blank" rel="noopener">Google</a> link is <code>http://google.com</code></p>
+<p><a href="http://blog.mrsuper.top">http://blog.mrsuper.top</a></p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">这是一条去百度的超级链接</span>](<span class="link">http://baidu.com "百度一下"</span>)</span><br><span class="line"></span><br><span class="line">[<span class="string">Google</span>][<span class="symbol">1</span>] link is <span class="code">`http://google.com`</span></span><br><span class="line"></span><br><span class="line">[<span class="symbol">1</span>]: <span class="link">http://google.com "Google one time"</span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">http:</span>//<span class="attr">blog.mrsuper.top</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="强调"><a href="#强调" class="headerlink" title=" 强调"></a><i class="fa fa-bold"></i> 强调</h2><p><em>一颗星 斜体</em><br><em>一条下划线 斜体</em></p>
+<p><strong>两颗星 加粗</strong><br><strong>二条下划线 加粗</strong></p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">*一颗星 斜体*</span></span><br><span class="line"><span class="emphasis">_一条下划线 斜体_</span></span><br><span class="line"></span><br><span class="line"><span class="strong">**两颗星 加粗**</span></span><br><span class="line"><span class="strong">__二条下划线 加粗__</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="行内代码"><a href="#行内代码" class="headerlink" title=" 行内代码"></a><i class="fa fa-code"></i> 行内代码</h2><p><code>&lt;em&gt;&lt;/em&gt;</code><br><code>&lt;strong&gt;&lt;/strong&gt;</code></p>
+<p><code>里面包含反引号 ` ，需要 2 个反引号括起来</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Brush</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">        system.out.print(<span class="string">"Hello World!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">`&lt;em&gt;&lt;/em&gt;`</span></span><br><span class="line"><span class="code">`&lt;strong&gt;&lt;/strong&gt;`</span></span><br><span class="line"></span><br><span class="line"><span class="code">`` 里面包含反引号 `</span> ，需要 2 个反引号括起来 ``</span><br><span class="line"></span><br><span class="line"><span class="code">``` java</span></span><br><span class="line"><span class="code">public class Brush &#123;</span></span><br><span class="line"><span class="code">    public static void main (String args[]) &#123;</span></span><br><span class="line"><span class="code">        system.out.print("Hello World!");</span></span><br><span class="line"><span class="code">    &#125;</span></span><br><span class="line"><span class="code">&#125;</span></span><br><span class="line"><span class="code">`` `</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="图片"><a href="#图片" class="headerlink" title=" 图片"></a><i class="fa fa-picture-o"></i> 图片</h2><p><img src="http://asset.mrsuper.top/blog/concept/thumb/markdown.jpg" alt="这是一张 Markdown 的图片" title="点击查看大图"></p>
+<p><img src="http://asset.mrsuper.top/www/qzx/2.jpg" alt="这是一张我大侄女的萌照" title="点击查看萌照"></p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">这是一张 Markdown 的图片</span>](<span class="link">http://asset.mrsuper.top/blog/concept/thumb/markdown.jpg "点击查看大图"</span>)</span><br><span class="line"></span><br><span class="line">![<span class="string">这是一张我大侄女的萌照</span>][<span class="symbol">zhixin</span>]</span><br><span class="line"></span><br><span class="line">[<span class="symbol">zhixin</span>]: <span class="link">http://asset.mrsuper.top/www/qzx/2.jpg "点击查看萌照"</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="ICON-图标"><a href="#ICON-图标" class="headerlink" title=" ICON 图标"></a><i class="fa fa-smile-o"></i> ICON 图标</h2><p><a href="http://fontawesome.dashgame.com/" target="_blank" rel="noopener">Font Awesome 图标</a> 都支持，使用 <code>class</code> 属性，值以 <code>fa fa-</code> 为前缀。</p>
+<ul>
+<li><i class="fa fa-flag-checkered"></i></li>
+<li><i class="fa fa-gg"></i></li>
+<li><i class="fa fa-quote-left"></i></li>
+<li><i class="fa fa-smile-o"></i></li>
+</ul>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">- </span><span class="xml"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-flag-checkered"</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></span><br><span class="line"><span class="bullet">- </span><span class="xml"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-gg"</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></span><br><span class="line"><span class="bullet">- </span><span class="xml"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-quote-left"</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></span><br><span class="line"><span class="bullet">- </span><span class="xml"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-smile-o"</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="表格"><a href="#表格" class="headerlink" title=" 表格"></a><i class="fa fa-table"></i> 表格</h2><table>
+<thead>
+<tr>
+<th>#</th>
+<th style="text-align:left">左对齐</th>
+<th style="text-align:center">居中对齐</th>
+<th style="text-align:right">右对齐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:left">IE</td>
+<td style="text-align:center">Chao</td>
+<td style="text-align:right">4444</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:left">Firox</td>
+<td style="text-align:center">Super</td>
+<td style="text-align:right">22</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:left">Safi</td>
+<td style="text-align:center">Subo</td>
+<td style="text-align:right">8</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:left">Chre</td>
+<td style="text-align:center">Lin</td>
+<td style="text-align:right">0631</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">| #   | 左对齐    | 居中局    | 右对齐  |</span><br><span class="line">| --  | :-----   | :------: | -----: |</span><br><span class="line">| 1   | IE       | Chao     | 4444   |</span><br><span class="line">| 2   | Firox    | Super    | 22     |</span><br><span class="line">| 3   | Safi     | Subo     | 8      |</span><br><span class="line">| 4   | Chre     | Lin      | 0631   |</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="复选框"><a href="#复选框" class="headerlink" title=" 复选框"></a><i class="fa fa-check-square-o"></i> 复选框</h2><ul>
+<li style="list-style: none"><input type="checkbox"> 支持以 PDF 格式导出文稿</li>
+<li style="list-style: none"><input type="checkbox"> 改进 Cmd 渲染算法，使用局部渲染技术提高渲染效率</li>
+<li style="list-style: none"><input type="checkbox" checked> 新增 Todo 列表功能</li>
+<li style="list-style: none"><input type="checkbox" checked> 修复 LaTex 公式渲染问题</li>
+<li style="list-style: none"><input type="checkbox" checked> 新增 LaTex 公式编号功能</li>
+</ul>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">- </span>[ ] 支持以 PDF 格式导出文稿</span><br><span class="line"><span class="bullet">- </span>[ ] 改进 Cmd 渲染算法，使用局部渲染技术提高渲染效率</span><br><span class="line"><span class="bullet">- </span>[x] 新增 Todo 列表功能</span><br><span class="line"><span class="bullet">- </span>[x] 修复 LaTex 公式渲染问题</span><br><span class="line"><span class="bullet">- </span>[x] 新增 LaTex 公式编号功能</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="公式"><a href="#公式" class="headerlink" title=" 公式"></a><i class="fa fa-gg"></i> 公式</h2><p>很遗憾，Hexo 的 markdown 不支持公式、流程图等高级特效。有些工具、MD 编辑器是支持的。比如：<a href="https://www.zybuluo.com/mdeditor" target="_blank" rel="noopener">Cmd Markdown 编辑阅读器</a>！</p>
+<p>$$ E=mc^2 $$<br>$\sum_{i=1}^n a_i=0$</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: Start</span><br><span class="line">op=&gt;operation: Your Operation</span><br><span class="line">cond=&gt;condition: Yes or No?</span><br><span class="line">e=&gt;end</span><br><span class="line"></span><br><span class="line">st-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no)-&gt;op</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Alice-&gt;Bob: Hello Bob, how are you?</span><br><span class="line">Note right of Bob: Bob thinks</span><br><span class="line">Bob--&gt;Alice: I am good thanks!</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">title 项目开发流程</span><br><span class="line">section 项目确定</span><br><span class="line">    需求分析       :a1, 2016-06-22, 3d</span><br><span class="line">    可行性报告     :after a1, 5d</span><br><span class="line">    概念验证       : 5d</span><br><span class="line">section 项目实施</span><br><span class="line">    概要设计      :2016-07-05  , 5d</span><br><span class="line">    详细设计      :2016-07-08, 10d</span><br><span class="line">    编码          :2016-07-15, 10d</span><br><span class="line">    测试          :2016-07-22, 5d</span><br><span class="line">section 发布验收</span><br><span class="line">    发布: 2d</span><br><span class="line">    验收: 3d</span><br></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://blog.mrsuper.top/2017/11/18/linux/toots/markdown/" data-id="cjlq6md9l006qmgzlh9eyotcw" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="SOHUCS" sid="http://blog.mrsuper.top/2017/11/18/linux/toots/markdown/"></div>
+
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/linzechao" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="https://weibo.com/superchao4444" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="renren" href="http://www.renren.com/358733940" target="_blank">
+                        <i class="icon fa fa-renren"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="pinterest-square" href="http://t.qq.com/linzechao" target="_blank">
+                        <i class="icon fa fa-pinterest-square"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="whatsapp" href="https://disqus.com/by/disqus_bOa47tDqFp/" target="_blank">
+                        <i class="icon fa fa-whatsapp"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/11/28/english/basic/syntax/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            语法 hello world
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/11/14/english/basic/symbol/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">发音 ABC</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/19/linux/toots/shell/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/shell.jpg)" alt="一键打包，一键部署？ Shell 脚本语言" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Linux/">Linux</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Linux/Tools/">Tools</a></p>
+                            <p class="item-title"><a href="/2018/08/19/linux/toots/shell/" class="title">一键打包，一键部署？ Shell 脚本语言</a></p>
+                            <p class="item-date"><time datetime="2018-08-18T21:57:09.000Z" itemprop="datePublished">2018-08-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/15/live/work/xunyitong/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/xyt/sztz.jpg)" alt="迅易通（闻商）" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Live/">Live</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Live/Work/">Work</a></p>
+                            <p class="item-title"><a href="/2018/08/15/live/work/xunyitong/" class="title">迅易通（闻商）</a></p>
+                            <p class="item-date"><time datetime="2018-08-14T22:14:24.000Z" itemprop="datePublished">2018-08-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/08/linux/toots/svn/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/svn.jpeg)" alt="最强 Subversion 命令行" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Linux/">Linux</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Linux/Tools/">Tools</a></p>
+                            <p class="item-title"><a href="/2018/08/08/linux/toots/svn/" class="title">最强 Subversion 命令行</a></p>
+                            <p class="item-date"><time datetime="2018-08-07T18:05:52.000Z" itemprop="datePublished">2018-08-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/07/server/cross-domain/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/cross-domain.jpeg)" alt="Web 开发，前后端分离之“跨域”问题" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Server/">Server</a></p>
+                            <p class="item-title"><a href="/2018/08/07/server/cross-domain/" class="title">Web 开发，前后端分离之“跨域”问题</a></p>
+                            <p class="item-date"><time datetime="2018-08-06T21:23:40.000Z" itemprop="datePublished">2018-08-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/05/js/node/express/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/node.jpeg)" alt="Node.js 的 Web 框架之 Express.js" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/JavaScript/Node/">Node</a></p>
+                            <p class="item-title"><a href="/2018/08/05/js/node/express/" class="title">Node.js 的 Web 框架之 Express.js</a></p>
+                            <p class="item-date"><time datetime="2018-08-05T14:37:33.000Z" itemprop="datePublished">2018-08-05</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/casual/" style="font-size: 10px;">casual</a> <a href="/tags/command/" style="font-size: 10px;">command</a> <a href="/tags/create-react-app/" style="font-size: 10px;">create-react-app</a> <a href="/tags/cross-domain/" style="font-size: 10px;">cross domain</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/driving-car/" style="font-size: 10px;">driving car</a> <a href="/tags/english/" style="font-size: 12px;">english</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/gvim/" style="font-size: 10px;">gvim</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/interview/" style="font-size: 12px;">interview</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/linux/" style="font-size: 18px;">linux</a> <a href="/tags/live/" style="font-size: 12px;">live</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/module/" style="font-size: 14px;">module</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/other/" style="font-size: 14px;">other</a> <a href="/tags/react/" style="font-size: 14px;">react</a> <a href="/tags/redux/" style="font-size: 10px;">redux</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/system/" style="font-size: 12px;">system</a> <a href="/tags/tools/" style="font-size: 20px;">tools</a> <a href="/tags/vue/" style="font-size: 12px;">vue</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/work/" style="font-size: 12px;">work</a> <a href="/tags/zero-based/" style="font-size: 16px;">zero-based</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com">Github</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.aliyun.com">AliYun</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/ppoffice/hexo-theme-hueman">Hueman</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.qiniu.com">QiNiu</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://changyan.kuaizhan.com">ChangYan</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://coding.net">Coding</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Super</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+                <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytENM45X"></script>
+    <script type="text/javascript">
+        (function() {
+            var appid = 'cytENM45X';
+            var conf = 'cecbda85f26c31168a76fef4aaa3b6e8';
+            var width = window.innerWidth || document.documentElement.clientWidth;
+            if (width < 960) {
+                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+            } else {
+                var loadJs = function(d, a) {
+                    var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+                    var b = document.createElement("script");
+                    b.setAttribute("type", "text/javascript");
+                    b.setAttribute("charset", "UTF-8");
+                    b.setAttribute("src", d);
+                    if (typeof a === "function") {
+                        if (window.attachEvent) {
+                            b.onreadystatechange = function() {
+                                var e = b.readyState;
+                                if (e === "loaded" || e === "complete") {
+                                    b.onreadystatechange = null;
+                                    a()
+                                }
+                            }
+                        } else {
+                            b.onload = a
+                        }
+                    }
+                    c.appendChild(b)
+                };
+                loadJs("https://changyan.sohu.com/upload/changyan.js", function() {
+                    window.changyan.api.config({
+                        appid: appid,
+                        conf: conf
+                    })
+                });
+            }
+        })();
+    </script>
+
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

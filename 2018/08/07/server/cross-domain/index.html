@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Web 开发，前后端分离之“跨域”问题 | 素伯的博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="server,cross domain" />
+    
+    <meta name="description" content="WEB 开发，前后端分离基本成互联网技术团队的标配！有点很明显，后端只需关心业务逻辑与数据的存取，前端负责整站的路由控制与页面数据展示、用户交互体验。但也有缺点，而且还不少，第一个就是跨域问题更迫切了！  相关资料 Express，基于 Node.js 平台的 WEB 开发框架  概念跨域！顾名思义，跨越不同域名下的服务器请求资源。  前端发起请求，什么请求头都携带，或者无自定义请求头 后端检测">
+<meta name="keywords" content="server,cross domain">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web 开发，前后端分离之“跨域”问题">
+<meta property="og:url" content="http://blog.mrsuper.top/2018/08/07/server/cross-domain/index.html">
+<meta property="og:site_name" content="素伯的博客">
+<meta property="og:description" content="WEB 开发，前后端分离基本成互联网技术团队的标配！有点很明显，后端只需关心业务逻辑与数据的存取，前端负责整站的路由控制与页面数据展示、用户交互体验。但也有缺点，而且还不少，第一个就是跨域问题更迫切了！  相关资料 Express，基于 Node.js 平台的 WEB 开发框架  概念跨域！顾名思义，跨越不同域名下的服务器请求资源。  前端发起请求，什么请求头都携带，或者无自定义请求头 后端检测">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://asset.mrsuper.top/blog/concept/thumb/cross-domain.jpeg">
+<meta property="og:updated_time" content="2018-09-03T08:39:08.063Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web 开发，前后端分离之“跨域”问题">
+<meta name="twitter:description" content="WEB 开发，前后端分离基本成互联网技术团队的标配！有点很明显，后端只需关心业务逻辑与数据的存取，前端负责整站的路由控制与页面数据展示、用户交互体验。但也有缺点，而且还不少，第一个就是跨域问题更迫切了！  相关资料 Express，基于 Node.js 平台的 WEB 开发框架  概念跨域！顾名思义，跨越不同域名下的服务器请求资源。  前端发起请求，什么请求头都携带，或者无自定义请求头 后端检测">
+<meta name="twitter:image" content="http://asset.mrsuper.top/blog/concept/thumb/cross-domain.jpeg">
+    
+
+    
+
+    
+        <link rel="icon" href="http://asset.mrsuper.top/blog/common/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?332745ca7f7a79c80b88afce194a5725";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">生死有命 富贵在天 —— 2018</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/English/">English</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/">JavaScript</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Module/">Module</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Node/">Node</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/React/">React</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Vue/">Vue</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/">Linux</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Database/">Database</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Docker/">Docker</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/System/">System</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Tools/">Tools</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/">Live</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Car/">Car</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Casual/">Casual</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Work/">Work</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Other/">Other</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Other/HTTP/">HTTP</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Server/">Server</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-server/cross-domain" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Web 开发，前后端分离之“跨域”问题
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/08/07/server/cross-domain/" class="article-date">
+            <time datetime="2018-08-06T21:23:40.000Z" itemprop="datePublished">2018-08-06</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/cross-domain/">cross domain</a>, <a class="tag-link" href="/tags/server/">server</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <blockquote>
+<p>WEB 开发，前后端分离基本成互联网技术团队的标配！有点很明显，后端只需关心业务逻辑与数据的存取，前端负责整站的路由控制与页面数据展示、用户交互体验。但也有缺点，而且还不少，第一个就是跨域问题更迫切了！</p>
+</blockquote>
+<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><ul>
+<li><a href="http://www.expressjs.com.cn/" target="_blank" rel="noopener">Express，基于 Node.js 平台的 WEB 开发框架</a></li>
+</ul>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>跨域！顾名思义，跨越不同域名下的服务器请求资源。</p>
+<ol>
+<li>前端发起请求，什么请求头都携带，或者无自定义请求头</li>
+<li>后端检测是否在允许的域名访问内，如果在则返回数据</li>
+</ol>
+<p>或</p>
+<ol>
+<li>前端发起请求，又携带了自定义的请求头</li>
+<li>服务器会先返回 Option 方法的访问结果</li>
+<li>检测请求头是否在允许访问内，如有则返回数据 </li>
+</ol>
+<h3 id="1-后端服务器设置"><a href="#1-后端服务器设置" class="headerlink" title="1. 后端服务器设置"></a>1. 后端服务器设置</h3><p>切记！是后端服务器，而不是后端代码。</p>
+<h4 id="Express-的-app-js"><a href="#Express-的-app-js" class="headerlink" title="Express 的 /app.js"></a>Express 的 <code>/app.js</code></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">var</span> cookieParser = <span class="built_in">require</span>(<span class="string">'cookie-parser'</span>)</span><br><span class="line"><span class="keyword">var</span> logger = <span class="built_in">require</span>(<span class="string">'morgan'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line"></span><br><span class="line">app.use(logger(<span class="string">'dev'</span>))</span><br><span class="line">app.use(express.json())</span><br><span class="line">app.use(express.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;))</span><br><span class="line">app.use(cookieParser())</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 使用静态文件</span></span><br><span class="line"><span class="comment"> * 直接访问</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">app.use(express.static(path.join(__dirname, <span class="string">'public'</span>)))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 放在所有请求的上面</span></span><br><span class="line"><span class="comment">// 处理跨域问题</span></span><br><span class="line">app.all(<span class="string">'*'</span>, (req, res, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 设置支持跨域的域名，便于开发使用或使用代理</span></span><br><span class="line">  <span class="keyword">const</span> origins = [<span class="string">'http://localhost:3000'</span>, <span class="string">'http://localhost:3001'</span>, <span class="string">'http://wx.mrsuper.top'</span>]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(origins.includes(req.headers.origin)) &#123;</span><br><span class="line">    <span class="comment">// 设置允许使用所有权限</span></span><br><span class="line">    res.header(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'*'</span>)</span><br><span class="line">    res.header(<span class="string">'Access-Control-Allow-Credentials'</span>, <span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 允许携带以下请求头属性</span></span><br><span class="line">    <span class="comment">// Origin 为代理时使用</span></span><br><span class="line">    <span class="comment">// Authorization 为自定义</span></span><br><span class="line">    res.header(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'Origin, X-Requested-With, Content-Type, Accept, Authorization'</span>)</span><br><span class="line">    <span class="comment">// 允许访问的方法</span></span><br><span class="line">    res.header(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'OPTIONS, POST, DELETE, PUT, GET'</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  next()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.use(<span class="string">'/'</span>, <span class="built_in">require</span>(<span class="string">'./routes/index'</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = app</span><br></pre></td></tr></table></figure>
+<h3 id="2-前端远程请求"><a href="#2-前端远程请求" class="headerlink" title="2. 前端远程请求"></a>2. 前端远程请求</h3><p>将一些繁琐而必要的配置项配置到请求公共方法里</p>
+<h4 id="2-1-fetch-配置"><a href="#2-1-fetch-配置" class="headerlink" title="2.1 fetch 配置"></a>2.1 fetch 配置</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Qs <span class="keyword">from</span> <span class="string">'qs'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> HOST = <span class="string">'http://mrsuper.top:8000/'</span></span><br><span class="line"><span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">'development'</span>) &#123;</span><br><span class="line">  HOST = <span class="string">'http://localhost:3000/'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseJSON</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> response.json()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkStatus</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (response.status &gt;= <span class="number">200</span> &amp;&amp; response.status &lt; <span class="number">300</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> error = <span class="keyword">new</span> <span class="built_in">Error</span>(response.statusText)</span><br><span class="line">  error.response = response</span><br><span class="line">  <span class="keyword">throw</span> error</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">http</span> (<span class="params">url, options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (options &amp;&amp; options.body) &#123;</span><br><span class="line">    <span class="comment">/* 二选一即可 */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 配合 application/x-www-form-urlencoded</span></span><br><span class="line">    options.body = Qs.stringify(options.body)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 配合 application/json</span></span><br><span class="line">    <span class="comment">// 使用 JSON 的序列化即可</span></span><br><span class="line">    <span class="comment">// options.body = JSON.stringify(options.body)</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> fetch(HOST + url, &#123;</span><br><span class="line">    ...options,</span><br><span class="line"></span><br><span class="line">    headers: &#123;</span><br><span class="line">      <span class="comment">// 自定义请求头</span></span><br><span class="line">      <span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded'</span>,</span><br><span class="line">      <span class="comment">// 'Content-Type': 'application/json',</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// 自定义请求头</span></span><br><span class="line">      <span class="comment">// 切记，一定需要后端配置允许，不然也访问不了</span></span><br><span class="line">      Authorization: <span class="built_in">window</span>.localStorage.getItem(<span class="string">'token'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(checkStatus)</span><br><span class="line">  .then(parseJSON)</span><br><span class="line">  .then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-2-使用基于-fetch-的-Axios"><a href="#2-2-使用基于-fetch-的-Axios" class="headerlink" title="2.2 使用基于 fetch 的 Axios"></a>2.2 使用基于 fetch 的 Axios</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">import</span> Qs <span class="keyword">from</span> <span class="string">'qs'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 生成调用地址</span></span><br><span class="line"><span class="keyword">let</span> HOST = <span class="string">'http://mrsuper.top:8000/'</span></span><br><span class="line"><span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">'development'</span>) &#123;</span><br><span class="line">  <span class="comment">// 开发调用地址</span></span><br><span class="line">  HOST = <span class="string">'http://localhost:3000/'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Axios = axios.create(&#123;</span><br><span class="line">  baseURL: HOST,</span><br><span class="line">  timeout: <span class="number">4000</span>,</span><br><span class="line">  <span class="comment">// 使用 Node 内置的 qs 模块，把数据进行序列化</span></span><br><span class="line">  transformRequest: [<span class="function"><span class="params">data</span> =&gt;</span> Qs.stringify(data)]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Axios.interceptors.request.use(<span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 设置请求头</span></span><br><span class="line">  config.headers = &#123;</span><br><span class="line">    <span class="comment">// 使用 application/x-www-form-urlencode，需要 Qs.stringify 的配合</span></span><br><span class="line">    <span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded'</span>,</span><br><span class="line">    <span class="comment">// 自定义请求头</span></span><br><span class="line">    <span class="comment">// 切记，一定需要后端配置允许，不然也访问不了</span></span><br><span class="line">    Authorization: <span class="built_in">window</span>.localStorage.getItem(<span class="string">'token'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> config</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Axios</span><br></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://blog.mrsuper.top/2018/08/07/server/cross-domain/" data-id="cjlq6md6y0000mgzlotrr0wqn" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="SOHUCS" sid="http://blog.mrsuper.top/2018/08/07/server/cross-domain/"></div>
+
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/linzechao" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="https://weibo.com/superchao4444" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="renren" href="http://www.renren.com/358733940" target="_blank">
+                        <i class="icon fa fa-renren"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="pinterest-square" href="http://t.qq.com/linzechao" target="_blank">
+                        <i class="icon fa fa-pinterest-square"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="whatsapp" href="https://disqus.com/by/disqus_bOa47tDqFp/" target="_blank">
+                        <i class="icon fa fa-whatsapp"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/08/08/linux/toots/svn/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            最强 Subversion 命令行
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/08/05/js/node/express/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Node.js 的 Web 框架之 Express.js</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/19/linux/toots/shell/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/shell.jpg)" alt="一键打包，一键部署？ Shell 脚本语言" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Linux/">Linux</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Linux/Tools/">Tools</a></p>
+                            <p class="item-title"><a href="/2018/08/19/linux/toots/shell/" class="title">一键打包，一键部署？ Shell 脚本语言</a></p>
+                            <p class="item-date"><time datetime="2018-08-18T21:57:09.000Z" itemprop="datePublished">2018-08-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/15/live/work/xunyitong/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/xyt/sztz.jpg)" alt="迅易通（闻商）" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Live/">Live</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Live/Work/">Work</a></p>
+                            <p class="item-title"><a href="/2018/08/15/live/work/xunyitong/" class="title">迅易通（闻商）</a></p>
+                            <p class="item-date"><time datetime="2018-08-14T22:14:24.000Z" itemprop="datePublished">2018-08-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/08/linux/toots/svn/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/svn.jpeg)" alt="最强 Subversion 命令行" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Linux/">Linux</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Linux/Tools/">Tools</a></p>
+                            <p class="item-title"><a href="/2018/08/08/linux/toots/svn/" class="title">最强 Subversion 命令行</a></p>
+                            <p class="item-date"><time datetime="2018-08-07T18:05:52.000Z" itemprop="datePublished">2018-08-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/07/server/cross-domain/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/cross-domain.jpeg)" alt="Web 开发，前后端分离之“跨域”问题" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Server/">Server</a></p>
+                            <p class="item-title"><a href="/2018/08/07/server/cross-domain/" class="title">Web 开发，前后端分离之“跨域”问题</a></p>
+                            <p class="item-date"><time datetime="2018-08-06T21:23:40.000Z" itemprop="datePublished">2018-08-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/05/js/node/express/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/node.jpeg)" alt="Node.js 的 Web 框架之 Express.js" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/JavaScript/Node/">Node</a></p>
+                            <p class="item-title"><a href="/2018/08/05/js/node/express/" class="title">Node.js 的 Web 框架之 Express.js</a></p>
+                            <p class="item-date"><time datetime="2018-08-05T14:37:33.000Z" itemprop="datePublished">2018-08-05</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/casual/" style="font-size: 10px;">casual</a> <a href="/tags/command/" style="font-size: 10px;">command</a> <a href="/tags/create-react-app/" style="font-size: 10px;">create-react-app</a> <a href="/tags/cross-domain/" style="font-size: 10px;">cross domain</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/driving-car/" style="font-size: 10px;">driving car</a> <a href="/tags/english/" style="font-size: 12px;">english</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/gvim/" style="font-size: 10px;">gvim</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/interview/" style="font-size: 12px;">interview</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/linux/" style="font-size: 18px;">linux</a> <a href="/tags/live/" style="font-size: 12px;">live</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/module/" style="font-size: 14px;">module</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/other/" style="font-size: 14px;">other</a> <a href="/tags/react/" style="font-size: 14px;">react</a> <a href="/tags/redux/" style="font-size: 10px;">redux</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/system/" style="font-size: 12px;">system</a> <a href="/tags/tools/" style="font-size: 20px;">tools</a> <a href="/tags/vue/" style="font-size: 12px;">vue</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/work/" style="font-size: 12px;">work</a> <a href="/tags/zero-based/" style="font-size: 16px;">zero-based</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com">Github</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.aliyun.com">AliYun</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/ppoffice/hexo-theme-hueman">Hueman</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.qiniu.com">QiNiu</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://changyan.kuaizhan.com">ChangYan</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://coding.net">Coding</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Super</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+                <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytENM45X"></script>
+    <script type="text/javascript">
+        (function() {
+            var appid = 'cytENM45X';
+            var conf = 'cecbda85f26c31168a76fef4aaa3b6e8';
+            var width = window.innerWidth || document.documentElement.clientWidth;
+            if (width < 960) {
+                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+            } else {
+                var loadJs = function(d, a) {
+                    var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+                    var b = document.createElement("script");
+                    b.setAttribute("type", "text/javascript");
+                    b.setAttribute("charset", "UTF-8");
+                    b.setAttribute("src", d);
+                    if (typeof a === "function") {
+                        if (window.attachEvent) {
+                            b.onreadystatechange = function() {
+                                var e = b.readyState;
+                                if (e === "loaded" || e === "complete") {
+                                    b.onreadystatechange = null;
+                                    a()
+                                }
+                            }
+                        } else {
+                            b.onload = a
+                        }
+                    }
+                    c.appendChild(b)
+                };
+                loadJs("https://changyan.sohu.com/upload/changyan.js", function() {
+                    window.changyan.api.config({
+                        appid: appid,
+                        conf: conf
+                    })
+                });
+            }
+        })();
+    </script>
+
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

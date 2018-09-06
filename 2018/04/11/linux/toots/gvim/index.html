@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>编辑器之神 Gvim | 素伯的博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="tools,gvim" />
+    
+    <meta name="description" content="我的开发工具历程：从大学时期的 TXT 纯文本入门，到 eclipse、MyEclipse。毕业前的 Webstorm，毕业后的 phpStorm。再到最后的 Sublime Text 3，直到遇见了 Gvim，才算真正找到归属。她在 Linux 系统下是默认编辑器，版本管理工具 Git 也是默认调用的编辑器。她能让你离开鼠标，释放你的右手，快速打码，让你爽到无法呼吸！  相关资料 下载 Gvi">
+<meta name="keywords" content="tools,gvim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编辑器之神 Gvim">
+<meta property="og:url" content="http://blog.mrsuper.top/2018/04/11/linux/toots/gvim/index.html">
+<meta property="og:site_name" content="素伯的博客">
+<meta property="og:description" content="我的开发工具历程：从大学时期的 TXT 纯文本入门，到 eclipse、MyEclipse。毕业前的 Webstorm，毕业后的 phpStorm。再到最后的 Sublime Text 3，直到遇见了 Gvim，才算真正找到归属。她在 Linux 系统下是默认编辑器，版本管理工具 Git 也是默认调用的编辑器。她能让你离开鼠标，释放你的右手，快速打码，让你爽到无法呼吸！  相关资料 下载 Gvi">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://asset.mrsuper.top/blog/concept/thumb/gvim.jpg">
+<meta property="og:updated_time" content="2018-08-03T02:05:36.713Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编辑器之神 Gvim">
+<meta name="twitter:description" content="我的开发工具历程：从大学时期的 TXT 纯文本入门，到 eclipse、MyEclipse。毕业前的 Webstorm，毕业后的 phpStorm。再到最后的 Sublime Text 3，直到遇见了 Gvim，才算真正找到归属。她在 Linux 系统下是默认编辑器，版本管理工具 Git 也是默认调用的编辑器。她能让你离开鼠标，释放你的右手，快速打码，让你爽到无法呼吸！  相关资料 下载 Gvi">
+<meta name="twitter:image" content="http://asset.mrsuper.top/blog/concept/thumb/gvim.jpg">
+    
+
+    
+
+    
+        <link rel="icon" href="http://asset.mrsuper.top/blog/common/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?332745ca7f7a79c80b88afce194a5725";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">生死有命 富贵在天 —— 2018</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/English/">English</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/">JavaScript</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Module/">Module</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Node/">Node</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/React/">React</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Vue/">Vue</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/">Linux</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Database/">Database</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Docker/">Docker</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/System/">System</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Tools/">Tools</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/">Live</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Car/">Car</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Casual/">Casual</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Work/">Work</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Other/">Other</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Other/HTTP/">HTTP</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Linux/">Linux</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Linux/Tools/">Tools</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-linux/toots/gvim" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        编辑器之神 Gvim
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/04/11/linux/toots/gvim/" class="article-date">
+            <time datetime="2018-04-11T14:28:07.000Z" itemprop="datePublished">2018-04-11</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/gvim/">gvim</a>, <a class="tag-link" href="/tags/tools/">tools</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <blockquote>
+<p>我的开发工具历程：从大学时期的 <code>TXT</code> 纯文本入门，到 <code>eclipse</code>、<code>MyEclipse</code>。毕业前的 <code>Webstorm</code>，毕业后的 <code>phpStorm</code>。再到最后的 <code>Sublime Text 3</code>，直到遇见了 <code>Gvim</code>，才算真正找到归属。她在 <strong>Linux</strong> 系统下是默认编辑器，版本管理工具 <strong>Git</strong> 也是默认调用的编辑器。她能让你离开鼠标，释放你的右手，快速打码，让你爽到无法呼吸！</p>
+</blockquote>
+<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><ul>
+<li><a href="https://www.vim.org/download.php" target="_blank" rel="noopener">下载 Gvim</a></li>
+<li><a href="https://github.com/skywind3000/awesome-cheatsheets/blob/master/editors/vim.txt" target="_blank" rel="noopener">最全，最详细的中文文档</a></li>
+<li><a href="https://github.com/ruanyl/bigvim" target="_blank" rel="noopener">Web 前端常用插件</a></li>
+<li><a href="http://vimcolors.com/" target="_blank" rel="noopener">Vim 配色</a></li>
+<li><a href="https://pan.baidu.com/s/1m2fdebpJ9-iTOJE8BsLLLA" target="_blank" rel="noopener">Vim 实用技巧 - Drew Neil</a>（密码：591n）</li>
+</ul>
+<p><img src="http://asset.mrsuper.top/blog/concept/gvim-comand.jpg" alt="命令图解"></p>
+<h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><ul>
+<li>Normal Mode：普通模式，预览、查看</li>
+<li>Visual Mode：可视模式，即选择文本模式</li>
+<li>Insert Mode：插入模式，即输入文本模式，就跟传统编辑器一样</li>
+<li>Select Mode：选择模式，使用鼠标选择文本</li>
+<li>Command-Line/Ex Mode：命令模式、Ex 模式</li>
+</ul>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
+<li>windows<br>在 Gvim 安装目录下，修改 <code>_vimrc</code> 文件即可</li>
+<li>linux<br>在用户根目录（~），复制 <code>/etc/vim/vimrc</code> 到 <code>~/.vimrc</code></li>
+</ul>
+<h4 id="1-map-前缀"><a href="#1-map-前缀" class="headerlink" title="1. map 前缀"></a>1. map 前缀</h4><ul>
+<li>n：普通模式下生效</li>
+<li>v：可视模式下生效</li>
+<li>i：插入模式下生效</li>
+<li>c：命令模式下生效</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">" 比如插入模式下使用 Ctrl-y-, 替换 Tab 键来做为代码补全快捷方式</span></span><br><span class="line"><span class="keyword">imap</span> <span class="symbol">&lt;C-y&gt;</span>, <span class="symbol">&lt;Tab&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-silent-leader-映射"><a href="#2-silent-leader-映射" class="headerlink" title="2. silent leader 映射"></a>2. silent leader 映射</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">" 将 ,t 当做打开文件预览器的快捷方式</span></span><br><span class="line"><span class="keyword">let</span> mapleader=<span class="string">","</span></span><br><span class="line"><span class="keyword">map</span> <span class="symbol">&lt;silent&gt;</span><span class="symbol">&lt;leader&gt;</span>t :NERDTreeToggle<span class="symbol">&lt;CR&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-以下为我常用的配置文件"><a href="#3-以下为我常用的配置文件" class="headerlink" title="3. 以下为我常用的配置文件"></a>3. 以下为我常用的配置文件</h4><ul>
+<li><a href="https://github.com/linzechao/tools/blob/master/vim/_vimrc" target="_blank" rel="noopener">Windows 下配置</a></li>
+<li><a href="https://github.com/linzechao/tools/blob/master/vim/.vimrc" target="_blank" rel="noopener">Linux 下配置</a></li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">" 设置鼠标运行模式为 Windows 模式</span></span><br><span class="line"><span class="comment">" ctrl-A 全选、ctrl-c 复制、ctrl-v 粘贴</span></span><br><span class="line"><span class="keyword">source</span> $VIMRUNTIME/vimrc_example.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">source</span> $VIMRUNTIME/mswin.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">behave</span> mswin</span><br><span class="line"></span><br><span class="line"><span class="comment">" Gvim 窗口最大化</span></span><br><span class="line"><span class="keyword">au</span> GUIEnter * <span class="keyword">simalt</span> ~<span class="keyword">x</span></span><br><span class="line"><span class="keyword">set</span> guioptions-=<span class="keyword">m</span> <span class="comment">" 隐藏菜单栏</span></span><br><span class="line"><span class="keyword">set</span> guioptions-=T <span class="comment">" 隐藏工具栏</span></span><br><span class="line"><span class="keyword">set</span> guioptions-=L <span class="comment">" 隐藏左侧滚动条</span></span><br><span class="line"><span class="keyword">set</span> guioptions-=r <span class="comment">" 隐藏右侧滚动条</span></span><br><span class="line"><span class="keyword">set</span> guioptions-=<span class="keyword">b</span> <span class="comment">" 隐藏底部滚动条</span></span><br><span class="line"><span class="keyword">set</span> guioptions-=<span class="number">0</span> <span class="comment">" 隐藏 tab 栏</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> encoding=utf-<span class="number">8</span> <span class="comment">" 编码</span></span><br><span class="line"><span class="keyword">set</span> guifont=Consola<span class="variable">s:h12</span> <span class="comment">" 字体、字号</span></span><br><span class="line"><span class="keyword">set</span> <span class="keyword">nu</span> <span class="comment">" 显示行号</span></span><br><span class="line"><span class="keyword">set</span> cursorline <span class="comment">" 突出当前行</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> tabstop=<span class="number">2</span> <span class="comment">" 设置默认为 2 个空格</span></span><br><span class="line"><span class="keyword">set</span> <span class="keyword">sts</span>=<span class="number">2</span> <span class="comment">" 设置 softtabstop 为 2 个空格，使用 tab 缩进后，删除也是整个 tab 删掉</span></span><br><span class="line"><span class="keyword">set</span> expandtab <span class="comment">" 使用空格代替 tab 键</span></span><br><span class="line"><span class="keyword">set</span> <span class="built_in">shiftwidth</span>=<span class="number">2</span> <span class="comment">" 设置自动缩进 2 个空格（回车缩进 2 个空格）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> nobackup <span class="comment">" 不生成备份文件</span></span><br><span class="line"><span class="keyword">set</span> noswapfile <span class="comment">" 不缓存 *.swp 文件</span></span><br><span class="line"><span class="keyword">set</span> noundofile <span class="comment">" 不缓存 *.un~ 文件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> foldenable              <span class="comment">" 开始折叠</span></span><br><span class="line"><span class="keyword">set</span> foldmethod=<span class="built_in">indent</span>       <span class="comment">" 设置语法折叠</span></span><br><span class="line"><span class="keyword">set</span> foldcolumn=<span class="number">0</span>            <span class="comment">" 设置折叠区域的宽度为 0</span></span><br><span class="line"><span class="keyword">setlocal</span> <span class="built_in">foldlevel</span>=<span class="number">1</span>        <span class="comment">" 设置折叠层数为 1</span></span><br><span class="line"><span class="keyword">set</span> foldlevelstart=<span class="number">99</span>       <span class="comment">" 打开文件是默认不折叠代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" 用空格键来开关折叠</span></span><br><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;space&gt;</span> @=((<span class="built_in">foldclosed</span>(<span class="built_in">line</span>(<span class="string">'.'</span>)) &lt; <span class="number">0</span>) ? <span class="string">'zc'</span> : <span class="string">'zo'</span>)<span class="symbol">&lt;CR&gt;</span>		</span><br><span class="line"></span><br><span class="line"><span class="comment">" 窗口切换</span></span><br><span class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;C-h&gt;</span> <span class="symbol">&lt;C-w&gt;</span><span class="symbol">&lt;C-h&gt;</span><span class="symbol">&lt;CR&gt;</span></span><br><span class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;C-j&gt;</span> <span class="symbol">&lt;C-w&gt;</span><span class="symbol">&lt;C-j&gt;</span><span class="symbol">&lt;CR&gt;</span></span><br><span class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;C-k&gt;</span> <span class="symbol">&lt;C-w&gt;</span><span class="symbol">&lt;C-k&gt;</span><span class="symbol">&lt;CR&gt;</span></span><br><span class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;C-l&gt;</span> <span class="symbol">&lt;C-w&gt;</span><span class="symbol">&lt;C-l&gt;</span><span class="symbol">&lt;CR&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" 禁用影响 Gvim 快捷方式的 Windows 快捷方式</span></span><br><span class="line"><span class="keyword">unmap</span> <span class="symbol">&lt;C-v&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" 文件预览器</span></span><br><span class="line"><span class="keyword">let</span> mapleader=<span class="string">","</span></span><br><span class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;silent&gt;</span><span class="symbol">&lt;leader&gt;</span>t :NERDTreeToggle<span class="symbol">&lt;CR&gt;</span></span><br><span class="line"><span class="keyword">autocmd</span> bufenter * <span class="keyword">if</span> (<span class="built_in">winnr</span>(<span class="string">'$'</span>) == <span class="number">1</span> &amp;&amp; <span class="built_in">exists</span>(<span class="string">'b:NERDTree'</span>) &amp;&amp; <span class="variable">b:NERDTree</span>.isTabTree()) | q | <span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" js 文档</span></span><br><span class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;silent&gt;</span><span class="symbol">&lt;leader&gt;</span>d <span class="symbol">&lt;Plug&gt;</span>(jsdoc)</span><br><span class="line"></span><br><span class="line"><span class="comment">" windows 配色（linux 自带主题）</span></span><br><span class="line"><span class="keyword">colorscheme</span> colorsbox-stnight</span><br><span class="line"></span><br><span class="line"><span class="comment">" windows 透明度（linxu 自带透明）</span></span><br><span class="line"><span class="comment">" http://www.vim.org/scripts/script.php?script_id=687</span></span><br><span class="line"><span class="comment">" 将 dll 文件放至 gvim.eve 同目录即可</span></span><br><span class="line"><span class="keyword">au</span> GUIEnter * <span class="keyword">call</span> <span class="built_in">libcallnr</span>(<span class="string">"vimtweak.dll"</span>, <span class="string">"SetAlpha"</span>, <span class="number">184</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">" ---------------- 插件 ----------------</span></span><br><span class="line"><span class="keyword">filetype</span> off</span><br><span class="line"><span class="keyword">set</span> rtp+=~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">call</span> vundle#begin()</span><br><span class="line">  <span class="comment">" 配色（需要手动复制、启动配色）</span></span><br><span class="line">  <span class="comment">" 复制到 Gvim 安装目录下的 /vimfiles/colors 目录下</span></span><br><span class="line">  <span class="comment">" 在上面引入</span></span><br><span class="line">  Plugin <span class="string">'mkarmona/colorsbox'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">" 文件菜单</span></span><br><span class="line">  Plugin <span class="string">'scrooloose/nerdtree'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">" 文件搜索</span></span><br><span class="line">  Plugin <span class="string">'kien/ctrlp.vim'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">" 标签补全</span></span><br><span class="line">  Plugin <span class="string">'mattn/emmet-vim'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">" 自动补全各种括号、单双引号</span></span><br><span class="line">  Plugin <span class="string">'Raimondi/delimitMate'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">" js 文档</span></span><br><span class="line">  Plugin <span class="string">'heavenshell/vim-jsdoc'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">" js 高亮</span></span><br><span class="line">  Plugin <span class="string">'pangloss/vim-javascript'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">" es6 高亮</span></span><br><span class="line">  Plugin <span class="string">'isRuslan/vim-es6'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">" markdown 高亮</span></span><br><span class="line">  Plugin <span class="string">'tpope/vim-markdown'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">" vue 高亮</span></span><br><span class="line">  Plugin <span class="string">'posva/vim-vue'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">" react 高亮</span></span><br><span class="line">  Plugin <span class="string">'mxw/vim-jsx'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">" CSS 高亮</span></span><br><span class="line">  Plugin <span class="string">'gko/vim-coloresque'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">" CSS3 高亮</span></span><br><span class="line">  Plugin <span class="string">'hail2u/vim-css3-syntax'</span></span><br><span class="line"><span class="keyword">call</span> vundle#end()</span><br><span class="line"><span class="keyword">filetype</span> plugin <span class="built_in">indent</span> <span class="keyword">on</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://blog.mrsuper.top/2018/04/11/linux/toots/gvim/" data-id="cjlq6md89001emgzllc5jr0ka" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="SOHUCS" sid="http://blog.mrsuper.top/2018/04/11/linux/toots/gvim/"></div>
+
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/linzechao" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="https://weibo.com/superchao4444" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="renren" href="http://www.renren.com/358733940" target="_blank">
+                        <i class="icon fa fa-renren"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="pinterest-square" href="http://t.qq.com/linzechao" target="_blank">
+                        <i class="icon fa fa-pinterest-square"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="whatsapp" href="https://disqus.com/by/disqus_bOa47tDqFp/" target="_blank">
+                        <i class="icon fa fa-whatsapp"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/04/27/linux/toots/git/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Git 从入门到放弃
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/03/25/other/http/protocol/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">HTTP 协议</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/19/linux/toots/shell/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/shell.jpg)" alt="一键打包，一键部署？ Shell 脚本语言" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Linux/">Linux</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Linux/Tools/">Tools</a></p>
+                            <p class="item-title"><a href="/2018/08/19/linux/toots/shell/" class="title">一键打包，一键部署？ Shell 脚本语言</a></p>
+                            <p class="item-date"><time datetime="2018-08-18T21:57:09.000Z" itemprop="datePublished">2018-08-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/15/live/work/xunyitong/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/xyt/sztz.jpg)" alt="迅易通（闻商）" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Live/">Live</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Live/Work/">Work</a></p>
+                            <p class="item-title"><a href="/2018/08/15/live/work/xunyitong/" class="title">迅易通（闻商）</a></p>
+                            <p class="item-date"><time datetime="2018-08-14T22:14:24.000Z" itemprop="datePublished">2018-08-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/08/linux/toots/svn/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/svn.jpeg)" alt="最强 Subversion 命令行" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Linux/">Linux</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Linux/Tools/">Tools</a></p>
+                            <p class="item-title"><a href="/2018/08/08/linux/toots/svn/" class="title">最强 Subversion 命令行</a></p>
+                            <p class="item-date"><time datetime="2018-08-07T18:05:52.000Z" itemprop="datePublished">2018-08-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/07/server/cross-domain/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/cross-domain.jpeg)" alt="Web 开发，前后端分离之“跨域”问题" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Server/">Server</a></p>
+                            <p class="item-title"><a href="/2018/08/07/server/cross-domain/" class="title">Web 开发，前后端分离之“跨域”问题</a></p>
+                            <p class="item-date"><time datetime="2018-08-06T21:23:40.000Z" itemprop="datePublished">2018-08-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/05/js/node/express/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/node.jpeg)" alt="Node.js 的 Web 框架之 Express.js" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/JavaScript/Node/">Node</a></p>
+                            <p class="item-title"><a href="/2018/08/05/js/node/express/" class="title">Node.js 的 Web 框架之 Express.js</a></p>
+                            <p class="item-date"><time datetime="2018-08-05T14:37:33.000Z" itemprop="datePublished">2018-08-05</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/casual/" style="font-size: 10px;">casual</a> <a href="/tags/command/" style="font-size: 10px;">command</a> <a href="/tags/create-react-app/" style="font-size: 10px;">create-react-app</a> <a href="/tags/cross-domain/" style="font-size: 10px;">cross domain</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/driving-car/" style="font-size: 10px;">driving car</a> <a href="/tags/english/" style="font-size: 12px;">english</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/gvim/" style="font-size: 10px;">gvim</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/interview/" style="font-size: 12px;">interview</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/linux/" style="font-size: 18px;">linux</a> <a href="/tags/live/" style="font-size: 12px;">live</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/module/" style="font-size: 14px;">module</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/other/" style="font-size: 14px;">other</a> <a href="/tags/react/" style="font-size: 14px;">react</a> <a href="/tags/redux/" style="font-size: 10px;">redux</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/system/" style="font-size: 12px;">system</a> <a href="/tags/tools/" style="font-size: 20px;">tools</a> <a href="/tags/vue/" style="font-size: 12px;">vue</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/work/" style="font-size: 12px;">work</a> <a href="/tags/zero-based/" style="font-size: 16px;">zero-based</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com">Github</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.aliyun.com">AliYun</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/ppoffice/hexo-theme-hueman">Hueman</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.qiniu.com">QiNiu</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://changyan.kuaizhan.com">ChangYan</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://coding.net">Coding</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Super</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+                <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytENM45X"></script>
+    <script type="text/javascript">
+        (function() {
+            var appid = 'cytENM45X';
+            var conf = 'cecbda85f26c31168a76fef4aaa3b6e8';
+            var width = window.innerWidth || document.documentElement.clientWidth;
+            if (width < 960) {
+                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+            } else {
+                var loadJs = function(d, a) {
+                    var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+                    var b = document.createElement("script");
+                    b.setAttribute("type", "text/javascript");
+                    b.setAttribute("charset", "UTF-8");
+                    b.setAttribute("src", d);
+                    if (typeof a === "function") {
+                        if (window.attachEvent) {
+                            b.onreadystatechange = function() {
+                                var e = b.readyState;
+                                if (e === "loaded" || e === "complete") {
+                                    b.onreadystatechange = null;
+                                    a()
+                                }
+                            }
+                        } else {
+                            b.onload = a
+                        }
+                    }
+                    c.appendChild(b)
+                };
+                loadJs("https://changyan.sohu.com/upload/changyan.js", function() {
+                    window.changyan.api.config({
+                        appid: appid,
+                        conf: conf
+                    })
+                });
+            }
+        })();
+    </script>
+
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

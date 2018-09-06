@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>从零开始搭建 React 开发环境 | 素伯的博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="react,zero-based" />
+    
+    <meta name="description" content="本文章讲解的是如何零基础搭建 React 的 Windows 开发环境。前不久得知 dva（React 开发全家桶）的坑不少，看来这事值得。一步一脚印，一拜一菩提。珍贵的不是有勇气开始，而是有毅力坚持。   github 源码参考  搭建步骤： Yarn Webpack / webpack-dev-server React / react-dom Babel Andt Mobile style-">
+<meta name="keywords" content="react,zero-based">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始搭建 React 开发环境">
+<meta property="og:url" content="http://blog.mrsuper.top/2018/05/10/js/react/zero-based-react/index.html">
+<meta property="og:site_name" content="素伯的博客">
+<meta property="og:description" content="本文章讲解的是如何零基础搭建 React 的 Windows 开发环境。前不久得知 dva（React 开发全家桶）的坑不少，看来这事值得。一步一脚印，一拜一菩提。珍贵的不是有勇气开始，而是有毅力坚持。   github 源码参考  搭建步骤： Yarn Webpack / webpack-dev-server React / react-dom Babel Andt Mobile style-">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://asset.mrsuper.top/blog/concept/thumb/zero-based-react.jpg">
+<meta property="og:updated_time" content="2018-08-03T02:05:36.710Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从零开始搭建 React 开发环境">
+<meta name="twitter:description" content="本文章讲解的是如何零基础搭建 React 的 Windows 开发环境。前不久得知 dva（React 开发全家桶）的坑不少，看来这事值得。一步一脚印，一拜一菩提。珍贵的不是有勇气开始，而是有毅力坚持。   github 源码参考  搭建步骤： Yarn Webpack / webpack-dev-server React / react-dom Babel Andt Mobile style-">
+<meta name="twitter:image" content="http://asset.mrsuper.top/blog/concept/thumb/zero-based-react.jpg">
+    
+
+    
+
+    
+        <link rel="icon" href="http://asset.mrsuper.top/blog/common/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?332745ca7f7a79c80b88afce194a5725";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">生死有命 富贵在天 —— 2018</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/English/">English</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/">JavaScript</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Module/">Module</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Node/">Node</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/React/">React</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Vue/">Vue</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/">Linux</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Database/">Database</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Docker/">Docker</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/System/">System</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Tools/">Tools</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/">Live</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Car/">Car</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Casual/">Casual</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Work/">Work</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Other/">Other</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Other/HTTP/">HTTP</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/JavaScript/">JavaScript</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/JavaScript/React/">React</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-js/react/zero-based-react" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        从零开始搭建 React 开发环境
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/05/10/js/react/zero-based-react/" class="article-date">
+            <time datetime="2018-05-09T20:47:14.000Z" itemprop="datePublished">2018-05-09</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/react/">react</a>, <a class="tag-link" href="/tags/zero-based/">zero-based</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <blockquote>
+<p>本文章讲解的是如何零基础搭建 React 的 Windows 开发环境。前不久得知 dva（React 开发全家桶）的坑不少，看来这事值得。<strong>一步一脚印，一拜一菩提。珍贵的不是有勇气开始，而是有毅力坚持。</strong></p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/linzechao/react" target="_blank" rel="noopener">github 源码参考</a></li>
+</ul>
+<h2 id="搭建步骤："><a href="#搭建步骤：" class="headerlink" title="搭建步骤："></a>搭建步骤：</h2><ol>
+<li><a href="#yarn">Yarn</a></li>
+<li><a href="#webpack">Webpack / webpack-dev-server</a></li>
+<li><a href="#react">React / react-dom</a></li>
+<li><a href="#babel">Babel</a></li>
+<li><a href="#andt">Andt Mobile</a></li>
+<li><a href="#style-loader">style-loader / css-loader</a></li>
+<li><a href="#mock">Mock / webpack-api-mocker</a></li>
+<li><a href="#router">react-router-dom / react-router</a></li>
+<li><a href="#sass">sass-loader</a></li>
+<li><a href="#eslint">esLint-loader</a></li>
+<li><a href="#redux">Redux / react-redux</a></li>
+</ol>
+<p><hr id="yarn"></p>
+<h3 id="1-Yarn"><a href="#1-Yarn" class="headerlink" title="1. Yarn"></a>1. Yarn</h3><p>我使用 <a href="https://yarn.bootcss.com/docs/cli/" target="_blank" rel="noopener">Yarn</a> 包管理器，体验上确实比 npm/cnpm 安装与更新更快，更便捷，维护起来也比较轻松。与 npm（由 Nodejs 安装自带）一样需要安装 exe 程序，<a href="https://yarn.bootcss.com/docs/install.html" target="_blank" rel="noopener">下载地址</a>。常用命令也就那几个，但要从 npm 的习惯中抽离出来是需要一段时间来过渡。</p>
+<ul>
+<li><a href="https://github.com/neal1991/articles-translator/blob/master/Npm%2C%20yarn%E4%BB%A5%E5%8F%8Apnpm%E7%9A%84%E4%B8%8D%E5%90%8C%E4%B9%8B%E5%A4%84.md" target="_blank" rel="noopener">npm，yarn 以及 pnpm 的不同之处</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装完成后，查看版本号</span></span><br><span class="line">yarn -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化项目</span></span><br><span class="line">yarn init</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加依赖包至 package.json 的 dependencies 中</span></span><br><span class="line">yarn add react react-dom</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加至 devDependencies 中</span></span><br><span class="line">yarn add -D webpack</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装全局格式</span></span><br><span class="line">yarn --global add webpack-cli</span><br></pre></td></tr></table></figure>
+<p><hr id="webpack"></p>
+<h3 id="2-Webpack"><a href="#2-Webpack" class="headerlink" title="2. Webpack"></a>2. Webpack</h3><p>前端自动化开发工具已经烂大街了，从 <a href="http://www.gruntjs.net/" target="_blank" rel="noopener">Grunt</a> 到 <a href="https://www.gulpjs.com.cn/" target="_blank" rel="noopener">Gulp</a>，再到我现在使用的 <a href="https://www.webpackjs.com/" target="_blank" rel="noopener">Webpack</a> ，前端技术更新太快，一浪拍一浪，胜出的往往是些经得起猿媛们折腾的。</p>
+<ul>
+<li><a href="/2017/12/31/js/module/webpack/">这位看官，请往这边走</a></li>
+</ul>
+<p><hr id="react"></p>
+<h3 id="3-React"><a href="#3-React" class="headerlink" title="3. React"></a>3. React</h3><p>基于步骤 2. Webpack 的 <code>./index.html</code> 文件，添加一个 id 为 root 的 div，如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"root"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- ./webpack.config.js 中配置输出的 js 打包文件 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>修改入口文件 <code>./src/index.js</code>，内容如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;Hello, React.&lt;<span class="regexp">/div&gt;,</span></span><br><span class="line"><span class="regexp">  document.getElementById('root')</span></span><br><span class="line"><span class="regexp">)</span></span><br></pre></td></tr></table></figure>
+<p><hr id="babel"></p>
+<h3 id="4-Babel"><a href="#4-Babel" class="headerlink" title="4. Babel"></a>4. Babel</h3><p>上面例子运行会报语法错误，应该 js 环境根本就不认识 <code>&lt;div&gt;Hello, React.&lt;/div&gt;</code>，所以我们需要引入 <code>babel-preset-react</code> 插件来将 jsx 语法转换成浏览器认识的 js，还有一点我们编写的是 es6 语法，所以也需要 <code>babel-preset-es2015</code> 等插件来转换，安装如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add -D babel-cli babel-core babel-preset-es2015</span><br><span class="line">yarn add -D babel-preset-react babel-plugin-transform-object-rest-spread</span><br></pre></td></tr></table></figure>
+<p>同时在根目录添加 <code>./.babelrc</code> 文件，内容如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"presets"</span>: [<span class="string">"es2015"</span>, <span class="string">"react"</span>],</span><br><span class="line">  <span class="attr">"plugins"</span>: [<span class="string">"transform-object-rest-spread"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再次重启 Webapck，你就会在页面看到打印出来的 <code>Hello, React.</code> 了。</p>
+<p><hr id="andt"></p>
+<h3 id="5-Antd-Mobile"><a href="#5-Antd-Mobile" class="headerlink" title="5. Antd Mobile"></a>5. Antd Mobile</h3><ul>
+<li><a href="https://mobile.ant.design/docs/react/introduce-cn" target="_blank" rel="noopener">ant desgin mobile</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 antd-mobile</span></span><br><span class="line">yarn add antd-mobile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装按需加载依赖</span></span><br><span class="line">yarn add -D babel-loader babel-plugin-import</span><br></pre></td></tr></table></figure>
+<p>修改 <code>./.babelrc</code> 文件：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"presets"</span>: [<span class="string">"es2015"</span>, <span class="string">"react"</span>],</span><br><span class="line">  <span class="attr">"plugins"</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">"import"</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"libraryName"</span>: <span class="string">"antd-mobile"</span>,</span><br><span class="line">        <span class="attr">"style"</span>: <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"transform-object-rest-spread"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改 <code>./src/index.js</code> 文件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span></span><br><span class="line"><span class="keyword">import</span> &#123; Button &#125; <span class="keyword">from</span> <span class="string">'antd-mobile'</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;<span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">type</span>=<span class="string">"primary"</span>&gt;</span>Hello, React.<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p><hr id="style-loader"></p>
+<h3 id="6-Style-loader"><a href="#6-Style-loader" class="headerlink" title="6. Style-loader"></a>6. Style-loader</h3><p>但我们添加自己的 CSS 文件，像 js 那样引入时，就需要 style-loader、css-loader 加载器来协助完成。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">yarn add -D style-loader css-loader</span><br></pre></td></tr></table></figure>
+<p>往 <code>./webpack.config.js</code> 文件加入 loader：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// 程序入口文件</span></span><br><span class="line">  entry: <span class="string">'./src/index.js'</span>,</span><br><span class="line">  <span class="comment">// 项目导入目录与文件</span></span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    filename: <span class="string">'bundle.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [&#123;</span><br><span class="line">          loader: <span class="string">'style-loader'</span></span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          loader: <span class="string">'css-loader'</span></span><br><span class="line">        &#125;]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><hr id="mock"></p>
+<h3 id="7-Mock"><a href="#7-Mock" class="headerlink" title="7. Mock"></a>7. Mock</h3><ul>
+<li><a href="http://mockjs.com/" target="_blank" rel="noopener">Mock.js 官网</a></li>
+<li><a href="jaywcjlove/webpack-api-mocker">Webpack Wock 插件</a></li>
+</ul>
+<p>现在前后端开发分离，已经成为业界一大主流。当一个项目需求下来，分工明确，但其中的协同合作就比较密切了，前端需要拿到后端的 API 接口才能进一步的开发，但后端的逻辑更为复杂，往往不可能第一时间给出响应的接口数据。这时候我们就要用到 Mock 了，需求一下来，前后端第一步就该协定“接口文档”（这个槽点在很多公司都存在），文档一定下来，我们就可以使用 Mock 模拟出与正式环境一模一样的数据了，开发毫无阻碍。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">yarn add mockjs</span><br><span class="line">yarn add -D webpack-api-mocker</span><br></pre></td></tr></table></figure>
+<p>往 <code>./webpack.config.js</code> 文件加入 mocker 插件：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">const</span> apiMocker = <span class="built_in">require</span>(<span class="string">'webpack-api-mocker'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./src/index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    <span class="comment">// filename: '[chunkhash].js'</span></span><br><span class="line">    filename: <span class="string">'bundle.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [&#123;</span><br><span class="line">          loader: <span class="string">'style-loader'</span></span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          loader: <span class="string">'css-loader'</span></span><br><span class="line">        &#125;]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    historyApiFallback: <span class="literal">true</span>,</span><br><span class="line">    before(app) &#123;</span><br><span class="line">      apiMocker(app, path.resolve(<span class="string">'mocker/index.js'</span>), &#123;&#125;)</span><br><span class="line">      app.listen(<span class="number">8090</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>添加 <code>./mocker/index.js</code> 文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">const Mock = require(<span class="string">'mockjs'</span>)</span><br><span class="line"></span><br><span class="line">const proxy = &#123;</span><br><span class="line">  [`GET /api/list`]: (req, res) =&gt; &#123;</span><br><span class="line">    <span class="built_in">return</span> res.json(&#123;</span><br><span class="line">      ...Mock.mock(&#123;</span><br><span class="line">        <span class="string">'status|0-1'</span>: 1,</span><br><span class="line">        <span class="string">'list|10'</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">'id|10-100'</span>: 34,</span><br><span class="line">            title: <span class="string">'@ctitle(6, 20)'</span>,</span><br><span class="line">            subtitle: <span class="string">'@date'</span>,</span><br><span class="line">            <span class="string">'extra|1'</span>: <span class="literal">true</span></span><br><span class="line">          &#125;</span><br><span class="line">        ],</span><br><span class="line">        page: &#123;</span><br><span class="line">          <span class="string">'p|+1'</span>: 1,</span><br><span class="line">          <span class="string">'count|192-491'</span>: 100</span><br><span class="line">        &#125;,</span><br><span class="line">        message: <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">          <span class="built_in">return</span> this.status ? <span class="string">'get success...'</span> : <span class="string">'get failure...'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports = proxy</span><br></pre></td></tr></table></figure></p>
+<p>这时候你在浏览器中输入域名后面带上端口 8090，加上 <code>/api/list</code> 就可以看到接口数据，<code>it&#39;s cool, man.</code></p>
+<p><hr id="router"></p>
+<h3 id="8-React-router"><a href="#8-React-router" class="headerlink" title="8. React router"></a>8. React router</h3><p>前后端分离后，前端页面不需要经过后端控制器跳转，前端想怎么跳就怎么跳。所以我们需要引入路由工具，那么 React 配套的就是 <code>react-router</code> 了，浏览器端需要引入 <code>react-router-dom</code>，它继承了 <code>react-router</code> 所有特性，并兼容了浏览器端各种特性。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">yarn add react-router-dom</span><br></pre></td></tr></table></figure>
+<p>修改 <code>./src/main.js</code> 文件，加入 2 个路由组件。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  BrowserRouter <span class="keyword">as</span> Router,</span><br><span class="line">  Route</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入两个路由组件</span></span><br><span class="line"><span class="comment">// views 开头路径在 wepack 那一篇文章里配置了 别名，指向 `./src/views`</span></span><br><span class="line"><span class="keyword">import</span> home <span class="keyword">from</span> <span class="string">'views/home'</span></span><br><span class="line"><span class="keyword">import</span> user <span class="keyword">from</span> <span class="string">'views/user'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 需要注意的是 path="/" 时，添加了 exact 关键字</span></span><br><span class="line"><span class="comment">// 表示严格匹配，后面的就是在匹配到也不再渲染</span></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Router&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;Route exact path=<span class="string">"/"</span> component=&#123;home&#125; /&gt;</span><br><span class="line">      &lt;Route path=<span class="string">"/user"</span> component=&#123;user&#125; /&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>Router&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>配置完成，重启 webpack，访问根路径渲染 home 组件，访问 <code>/user</code> 路径则渲染 user 路径</p>
+<p><hr id="sass"></p>
+<h3 id="9-sass-loader"><a href="#9-sass-loader" class="headerlink" title="9. sass-loader"></a>9. sass-loader</h3><ul>
+<li><a href="https://www.sass.hk/" target="_blank" rel="noopener">世界上最成熟、最稳定、最强大的专业级 CSS 扩展语言！</a></li>
+<li><a href="http://compass-style.org/" target="_blank" rel="noopener">默哀 Compass</a></li>
+</ul>
+<p><code>sass</code> 应该是 css 预处理器中最顶尖的选手了吧，入此师门是因为当年有 <code>Compass</code>。现在有各种 <code>babel</code>，它已经慢慢被人遗忘，默哀。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line"><span class="comment"># 也是需要 style-loader css-loader 支持</span></span><br><span class="line"><span class="comment"># 很幸运，我们已经安装了它们</span></span><br><span class="line">yarn add -D sass-loader</span><br></pre></td></tr></table></figure>
+<p>在 <code>./webpack.config.js</code> 中引入：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果单纯只有 sass 文件的话，可以删除上面的 css-loader 规则</span></span><br><span class="line"><span class="comment">// 如果同时存在 css、sass 文件，则跟随 css-loader 后面加上：</span></span><br><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.scss$/</span>,</span><br><span class="line">  use: [&#123;</span><br><span class="line">    loader: <span class="string">'style-loader'</span></span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    loader: <span class="string">'css-loader'</span></span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    loader: <span class="string">'sass-loader'</span></span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><hr id="eslint"></p>
+<h3 id="10-eslint-loader"><a href="#10-eslint-loader" class="headerlink" title="10. eslint-loader"></a>10. eslint-loader</h3><ul>
+<li><a href="http://eslint.cn/" target="_blank" rel="noopener">esLint 中文</a></li>
+</ul>
+<p>前端规范？每个人有自己的代码风格，这个在团队协作中很头疼，特别对处女座的同事们，连个 <strong>;</strong> 都会抓狂。这时候引入前端火得不得了的 <code>eslint</code>，会让你的代码精美一致，谁看谁惊叹。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">yarn add -D eslint eslint-config-standard eslint-plugin-import</span><br><span class="line">yarn add -D eslint-loader eslint-plugin-node eslint-plugin-react</span><br><span class="line">yarn add -D eslint-plugin-promise eslint-plugin-standard</span><br></pre></td></tr></table></figure>
+<p>在 <code>./webpack.config.js</code> 中引入：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 跟随 scss-loader 后面加上：</span></span><br><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">  exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">  use: [&#123;</span><br><span class="line">    loader: <span class="string">'babel-loader'</span></span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    loader: <span class="string">'eslint-loader'</span></span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><hr id="redux"></p>
+<h3 id="11-Redux"><a href="#11-Redux" class="headerlink" title="11. Redux"></a>11. Redux</h3><p>Redux 是 React 的状态管理工具，比起 Vue 的 Vuex，Redux 复杂、诡异。但是</p>
+<blockquote>
+<p>精于此道，以此为生！</p>
+</blockquote>
+<p><a href="/2018/06/18/js/react/zero-based-redux/">这位看官，请往这边走</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://blog.mrsuper.top/2018/05/10/js/react/zero-based-react/" data-id="cjlq6md9j006mmgzl0jiuqkmc" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="SOHUCS" sid="http://blog.mrsuper.top/2018/05/10/js/react/zero-based-react/"></div>
+
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/linzechao" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="https://weibo.com/superchao4444" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="renren" href="http://www.renren.com/358733940" target="_blank">
+                        <i class="icon fa fa-renren"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="pinterest-square" href="http://t.qq.com/linzechao" target="_blank">
+                        <i class="icon fa fa-pinterest-square"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="whatsapp" href="https://disqus.com/by/disqus_bOa47tDqFp/" target="_blank">
+                        <i class="icon fa fa-whatsapp"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/05/20/js/vue/zero-based-vue/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Vue 回炉之路
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/04/27/linux/toots/git/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Git 从入门到放弃</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/19/linux/toots/shell/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/shell.jpg)" alt="一键打包，一键部署？ Shell 脚本语言" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Linux/">Linux</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Linux/Tools/">Tools</a></p>
+                            <p class="item-title"><a href="/2018/08/19/linux/toots/shell/" class="title">一键打包，一键部署？ Shell 脚本语言</a></p>
+                            <p class="item-date"><time datetime="2018-08-18T21:57:09.000Z" itemprop="datePublished">2018-08-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/15/live/work/xunyitong/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/xyt/sztz.jpg)" alt="迅易通（闻商）" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Live/">Live</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Live/Work/">Work</a></p>
+                            <p class="item-title"><a href="/2018/08/15/live/work/xunyitong/" class="title">迅易通（闻商）</a></p>
+                            <p class="item-date"><time datetime="2018-08-14T22:14:24.000Z" itemprop="datePublished">2018-08-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/08/linux/toots/svn/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/svn.jpeg)" alt="最强 Subversion 命令行" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Linux/">Linux</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Linux/Tools/">Tools</a></p>
+                            <p class="item-title"><a href="/2018/08/08/linux/toots/svn/" class="title">最强 Subversion 命令行</a></p>
+                            <p class="item-date"><time datetime="2018-08-07T18:05:52.000Z" itemprop="datePublished">2018-08-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/07/server/cross-domain/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/cross-domain.jpeg)" alt="Web 开发，前后端分离之“跨域”问题" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Server/">Server</a></p>
+                            <p class="item-title"><a href="/2018/08/07/server/cross-domain/" class="title">Web 开发，前后端分离之“跨域”问题</a></p>
+                            <p class="item-date"><time datetime="2018-08-06T21:23:40.000Z" itemprop="datePublished">2018-08-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/08/05/js/node/express/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/node.jpeg)" alt="Node.js 的 Web 框架之 Express.js" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/JavaScript/Node/">Node</a></p>
+                            <p class="item-title"><a href="/2018/08/05/js/node/express/" class="title">Node.js 的 Web 框架之 Express.js</a></p>
+                            <p class="item-date"><time datetime="2018-08-05T14:37:33.000Z" itemprop="datePublished">2018-08-05</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/casual/" style="font-size: 10px;">casual</a> <a href="/tags/command/" style="font-size: 10px;">command</a> <a href="/tags/create-react-app/" style="font-size: 10px;">create-react-app</a> <a href="/tags/cross-domain/" style="font-size: 10px;">cross domain</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/driving-car/" style="font-size: 10px;">driving car</a> <a href="/tags/english/" style="font-size: 12px;">english</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/gvim/" style="font-size: 10px;">gvim</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/interview/" style="font-size: 12px;">interview</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/linux/" style="font-size: 18px;">linux</a> <a href="/tags/live/" style="font-size: 12px;">live</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/module/" style="font-size: 14px;">module</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/other/" style="font-size: 14px;">other</a> <a href="/tags/react/" style="font-size: 14px;">react</a> <a href="/tags/redux/" style="font-size: 10px;">redux</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/system/" style="font-size: 12px;">system</a> <a href="/tags/tools/" style="font-size: 20px;">tools</a> <a href="/tags/vue/" style="font-size: 12px;">vue</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/work/" style="font-size: 12px;">work</a> <a href="/tags/zero-based/" style="font-size: 16px;">zero-based</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com">Github</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.aliyun.com">AliYun</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/ppoffice/hexo-theme-hueman">Hueman</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.qiniu.com">QiNiu</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://changyan.kuaizhan.com">ChangYan</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://coding.net">Coding</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Super</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+                <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytENM45X"></script>
+    <script type="text/javascript">
+        (function() {
+            var appid = 'cytENM45X';
+            var conf = 'cecbda85f26c31168a76fef4aaa3b6e8';
+            var width = window.innerWidth || document.documentElement.clientWidth;
+            if (width < 960) {
+                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+            } else {
+                var loadJs = function(d, a) {
+                    var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+                    var b = document.createElement("script");
+                    b.setAttribute("type", "text/javascript");
+                    b.setAttribute("charset", "UTF-8");
+                    b.setAttribute("src", d);
+                    if (typeof a === "function") {
+                        if (window.attachEvent) {
+                            b.onreadystatechange = function() {
+                                var e = b.readyState;
+                                if (e === "loaded" || e === "complete") {
+                                    b.onreadystatechange = null;
+                                    a()
+                                }
+                            }
+                        } else {
+                            b.onload = a
+                        }
+                    }
+                    c.appendChild(b)
+                };
+                loadJs("https://changyan.sohu.com/upload/changyan.js", function() {
+                    window.changyan.api.config({
+                        appid: appid,
+                        conf: conf
+                    })
+                });
+            }
+        })();
+    </script>
+
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
