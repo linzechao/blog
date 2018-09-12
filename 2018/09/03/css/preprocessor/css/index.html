@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>样式层叠表 CSS | 素伯的博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="css" />
+    
+    <meta name="description" content="层叠样式表（英文全称：Cascading Style Sheets）是一种用来表现 HTML（标准通用标记语言的一个应用）或 XML（标准通用标记语言的一个子集）等文件样式的计算机语言。CSS 不仅可以静态地修饰网页，还可以配合各种脚本语言动态地对网页各元素进行格式化。CSS 能够对网页中元素位置的排版进行像素级精确控制，支持几乎所有的字体字号样式，拥有对网页对象和模型样式编辑的能力。——百度百">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="样式层叠表 CSS">
+<meta property="og:url" content="http://blog.mrsuper.top/2018/09/03/css/preprocessor/css/index.html">
+<meta property="og:site_name" content="素伯的博客">
+<meta property="og:description" content="层叠样式表（英文全称：Cascading Style Sheets）是一种用来表现 HTML（标准通用标记语言的一个应用）或 XML（标准通用标记语言的一个子集）等文件样式的计算机语言。CSS 不仅可以静态地修饰网页，还可以配合各种脚本语言动态地对网页各元素进行格式化。CSS 能够对网页中元素位置的排版进行像素级精确控制，支持几乎所有的字体字号样式，拥有对网页对象和模型样式编辑的能力。——百度百">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://asset.mrsuper.top/blog/concept/thumb/css.jpeg">
+<meta property="og:updated_time" content="2018-09-11T06:27:42.241Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="样式层叠表 CSS">
+<meta name="twitter:description" content="层叠样式表（英文全称：Cascading Style Sheets）是一种用来表现 HTML（标准通用标记语言的一个应用）或 XML（标准通用标记语言的一个子集）等文件样式的计算机语言。CSS 不仅可以静态地修饰网页，还可以配合各种脚本语言动态地对网页各元素进行格式化。CSS 能够对网页中元素位置的排版进行像素级精确控制，支持几乎所有的字体字号样式，拥有对网页对象和模型样式编辑的能力。——百度百">
+<meta name="twitter:image" content="http://asset.mrsuper.top/blog/concept/thumb/css.jpeg">
+    
+
+    
+
+    
+        <link rel="icon" href="http://asset.mrsuper.top/blog/common/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?332745ca7f7a79c80b88afce194a5725";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">生死有命 富贵在天 —— 2018</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/">CSS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/LESS/">LESS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/SASS/">SASS</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/English/">English</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/">JavaScript</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Module/">Module</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Node/">Node</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/React/">React</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Vue/">Vue</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/">Linux</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Database/">Database</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Docker/">Docker</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/System/">System</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Tools/">Tools</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/">Live</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Car/">Car</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Casual/">Casual</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Work/">Work</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Other/">Other</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Other/HTTP/">HTTP</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/CSS/">CSS</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-css/preprocessor/css" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        样式层叠表 CSS
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/09/03/css/preprocessor/css/" class="article-date">
+            <time datetime="2018-09-02T16:59:45.000Z" itemprop="datePublished">2018-09-02</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/css/">css</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <blockquote>
+<p>层叠样式表（英文全称：Cascading Style Sheets）是一种用来表现 HTML（标准通用标记语言的一个应用）或 XML（标准通用标记语言的一个子集）等文件样式的计算机语言。CSS 不仅可以静态地修饰网页，还可以配合各种脚本语言动态地对网页各元素进行格式化。<br>CSS 能够对网页中元素位置的排版进行像素级精确控制，支持几乎所有的字体字号样式，拥有对网页对象和模型样式编辑的能力。——<a href="https://baike.baidu.com/item/css" target="_blank" rel="noopener">百度百科</a></p>
+</blockquote>
+<h2 id="相关教程"><a href="#相关教程" class="headerlink" title="相关教程"></a>相关教程</h2><ul>
+<li>菜鸟先飞<ol>
+<li><a href="http://www.runoob.com/css/css-tutorial.html" target="_blank" rel="noopener">CSS</a></li>
+<li><a href="http://www.runoob.com/css3/css3-tutorial.html" target="_blank" rel="noopener">CSS3</a></li>
+</ol>
+</li>
+<li>W3school（被超越了）<ol>
+<li><a href="http://www.w3school.com.cn/css/index.asp" target="_blank" rel="noopener">CSS</a></li>
+<li><a href="http://www.w3school.com.cn/css3/index.asp" target="_blank" rel="noopener">CSS3</a></li>
+</ol>
+</li>
+<li>其他<ol>
+<li><a href="http://zh.learnlayout.com/" target="_blank" rel="noopener">学习 CSS 布局</a></li>
+<li><a href="http://css.doyoe.com/" target="_blank" rel="noopener">CSS 参考手册</a></li>
+<li><a href="https://www.imooc.com/learn/33" target="_blank" rel="noopener">慕课网 - 十天精通 CSS3</a></li>
+</ol>
+</li>
+</ul>
+<h3 id="CSS-UI-框架"><a href="#CSS-UI-框架" class="headerlink" title="CSS UI 框架"></a>CSS UI 框架</h3><ul>
+<li><a href="https://v4.bootcss.com/" target="_blank" rel="noopener">Bootstrap v4</a><br>Bootstrap 是全球最受欢迎的前端组件库，用于开发响应式布局、移动设备优先的 WEB 项目。可用于 PC/H5 web 开发，自适应布局的布道者。</li>
+<li><a href="http://dev.dcloud.net.cn/mui/ui/" target="_blank" rel="noopener">MUI</a><br>最接近原生 APP 体验的高性能前端框架，用于 H5 web 应用开发项目。<a href="http://dcloud.io/hellomui/" target="_blank" rel="noopener">下载 Demo</a>，直接引入使用即可；或者下载 <a href="http://www.dcloud.io/" target="_blank" rel="noopener">HBuilder 编辑器</a> 创建 MUI 项目。</li>
+<li><a href="https://www.layui.com/" target="_blank" rel="noopener">Layui</a><br>经典模块化前端框架。由职业前端倾情打造，面向所有层次的前后端开发者，零门槛开箱即用的前端 UI 解决方案。</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://blog.mrsuper.top/2018/09/03/css/preprocessor/css/" data-id="cjlxal46t00070tzl3ddpjct6" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="SOHUCS" sid="http://blog.mrsuper.top/2018/09/03/css/preprocessor/css/"></div>
+
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/linzechao" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="https://weibo.com/superchao4444" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="renren" href="http://www.renren.com/358733940" target="_blank">
+                        <i class="icon fa fa-renren"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="pinterest-square" href="http://t.qq.com/linzechao" target="_blank">
+                        <i class="icon fa fa-pinterest-square"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="whatsapp" href="https://disqus.com/by/disqus_bOa47tDqFp/" target="_blank">
+                        <i class="icon fa fa-whatsapp"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/09/07/other/wx/applet/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            微信小程序，了解一下
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/08/29/js/react/umi-config/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">极快的类 Next.js 的 React 应用框架</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/09/21/css/preprocessor/compass/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/compass.png)" alt="基于 Sass 开发的 Compass" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CSS/">CSS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CSS/SASS/">SASS</a></p>
+                            <p class="item-title"><a href="/2018/09/21/css/preprocessor/compass/" class="title">基于 Sass 开发的 Compass</a></p>
+                            <p class="item-date"><time datetime="2018-09-20T20:58:08.000Z" itemprop="datePublished">2018-09-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/09/18/css/preprocessor/less/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/less.png)" alt="Less 是一门 CSS 预处理器" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CSS/">CSS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CSS/LESS/">LESS</a></p>
+                            <p class="item-title"><a href="/2018/09/18/css/preprocessor/less/" class="title">Less 是一门 CSS 预处理器</a></p>
+                            <p class="item-date"><time datetime="2018-09-18T15:47:11.000Z" itemprop="datePublished">2018-09-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/09/15/css/preprocessor/sass/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/sass.png)" alt="最火的样式预处理器 SASS" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CSS/">CSS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CSS/SASS/">SASS</a></p>
+                            <p class="item-title"><a href="/2018/09/15/css/preprocessor/sass/" class="title">最火的样式预处理器 SASS</a></p>
+                            <p class="item-date"><time datetime="2018-09-15T14:28:40.000Z" itemprop="datePublished">2018-09-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/09/11/other/project/js-tools/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/clipboard.png)" alt="实际开发中超实用工具和插件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Other/">Other</a></p>
+                            <p class="item-title"><a href="/2018/09/11/other/project/js-tools/" class="title">实际开发中超实用工具和插件</a></p>
+                            <p class="item-date"><time datetime="2018-09-11T13:59:08.000Z" itemprop="datePublished">2018-09-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/09/07/other/wx/applet/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/wx-applet.jpeg)" alt="微信小程序，了解一下" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Other/">Other</a></p>
+                            <p class="item-title"><a href="/2018/09/07/other/wx/applet/" class="title">微信小程序，了解一下</a></p>
+                            <p class="item-date"><time datetime="2018-09-06T17:17:17.000Z" itemprop="datePublished">2018-09-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/applet/" style="font-size: 10px;">applet</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/casual/" style="font-size: 10px;">casual</a> <a href="/tags/command/" style="font-size: 10px;">command</a> <a href="/tags/compass/" style="font-size: 10px;">compass</a> <a href="/tags/create-react-app/" style="font-size: 10px;">create-react-app</a> <a href="/tags/cross-domain/" style="font-size: 10px;">cross domain</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/driving-car/" style="font-size: 10px;">driving car</a> <a href="/tags/english/" style="font-size: 12px;">english</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/gvim/" style="font-size: 10px;">gvim</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/interview/" style="font-size: 12px;">interview</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/linux/" style="font-size: 18px;">linux</a> <a href="/tags/live/" style="font-size: 12px;">live</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/module/" style="font-size: 14px;">module</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/other/" style="font-size: 14px;">other</a> <a href="/tags/react/" style="font-size: 16px;">react</a> <a href="/tags/redux/" style="font-size: 10px;">redux</a> <a href="/tags/sass/" style="font-size: 10px;">sass</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/system/" style="font-size: 12px;">system</a> <a href="/tags/tools/" style="font-size: 20px;">tools</a> <a href="/tags/umi/" style="font-size: 10px;">umi</a> <a href="/tags/vue/" style="font-size: 12px;">vue</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/work/" style="font-size: 12px;">work</a> <a href="/tags/wx/" style="font-size: 10px;">wx</a> <a href="/tags/zero-based/" style="font-size: 16px;">zero-based</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com">Github</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.aliyun.com">AliYun</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/ppoffice/hexo-theme-hueman">Hueman</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.qiniu.com">QiNiu</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://changyan.kuaizhan.com">ChangYan</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://coding.net">Coding</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Super</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+                <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytENM45X"></script>
+    <script type="text/javascript">
+        (function() {
+            var appid = 'cytENM45X';
+            var conf = 'cecbda85f26c31168a76fef4aaa3b6e8';
+            var width = window.innerWidth || document.documentElement.clientWidth;
+            if (width < 960) {
+                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+            } else {
+                var loadJs = function(d, a) {
+                    var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+                    var b = document.createElement("script");
+                    b.setAttribute("type", "text/javascript");
+                    b.setAttribute("charset", "UTF-8");
+                    b.setAttribute("src", d);
+                    if (typeof a === "function") {
+                        if (window.attachEvent) {
+                            b.onreadystatechange = function() {
+                                var e = b.readyState;
+                                if (e === "loaded" || e === "complete") {
+                                    b.onreadystatechange = null;
+                                    a()
+                                }
+                            }
+                        } else {
+                            b.onload = a
+                        }
+                    }
+                    c.appendChild(b)
+                };
+                loadJs("https://changyan.sohu.com/upload/changyan.js", function() {
+                    window.changyan.api.config({
+                        appid: appid,
+                        conf: conf
+                    })
+                });
+            }
+        })();
+    </script>
+
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

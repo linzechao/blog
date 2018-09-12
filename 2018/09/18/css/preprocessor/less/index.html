@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Less 是一门 CSS 预处理器 | 素伯的博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="less" />
+    
+    <meta name="description" content="Less 是一门 CSS 预处理语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使 CSS 更易维护和扩展。如果你只是开发一个小项目，根本就用不上什么高大上的构建工具，也没必要去安装 Sass 需要的 Ruby 环境，其实 Less 才是你的首选！  相关资料 中文官网 Koala 编译器  相关教程 bootstrap 慕课 - less 即学即用  安装 下载 Koala">
+<meta name="keywords" content="less">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Less 是一门 CSS 预处理器">
+<meta property="og:url" content="http://blog.mrsuper.top/2018/09/18/css/preprocessor/less/index.html">
+<meta property="og:site_name" content="素伯的博客">
+<meta property="og:description" content="Less 是一门 CSS 预处理语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使 CSS 更易维护和扩展。如果你只是开发一个小项目，根本就用不上什么高大上的构建工具，也没必要去安装 Sass 需要的 Ruby 环境，其实 Less 才是你的首选！  相关资料 中文官网 Koala 编译器  相关教程 bootstrap 慕课 - less 即学即用  安装 下载 Koala">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://asset.mrsuper.top/blog/concept/thumb/less.png">
+<meta property="og:updated_time" content="2018-09-12T02:43:10.733Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Less 是一门 CSS 预处理器">
+<meta name="twitter:description" content="Less 是一门 CSS 预处理语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使 CSS 更易维护和扩展。如果你只是开发一个小项目，根本就用不上什么高大上的构建工具，也没必要去安装 Sass 需要的 Ruby 环境，其实 Less 才是你的首选！  相关资料 中文官网 Koala 编译器  相关教程 bootstrap 慕课 - less 即学即用  安装 下载 Koala">
+<meta name="twitter:image" content="http://asset.mrsuper.top/blog/concept/thumb/less.png">
+    
+
+    
+
+    
+        <link rel="icon" href="http://asset.mrsuper.top/blog/common/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?332745ca7f7a79c80b88afce194a5725";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">生死有命 富贵在天 —— 2018</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/">CSS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/LESS/">LESS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS/SASS/">SASS</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/English/">English</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/">JavaScript</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Module/">Module</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Node/">Node</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/React/">React</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/Vue/">Vue</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/">Linux</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Database/">Database</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Docker/">Docker</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/System/">System</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/Tools/">Tools</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/">Live</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Car/">Car</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Casual/">Casual</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Live/Work/">Work</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Other/">Other</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Other/HTTP/">HTTP</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Server/">Server</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/CSS/">CSS</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/CSS/LESS/">LESS</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-css/preprocessor/less" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Less 是一门 CSS 预处理器
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/09/18/css/preprocessor/less/" class="article-date">
+            <time datetime="2018-09-18T15:47:11.000Z" itemprop="datePublished">2018-09-18</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/less/">less</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <blockquote>
+<p>Less 是一门 CSS 预处理语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使 CSS 更易维护和扩展。如果你只是开发一个小项目，根本就用不上什么高大上的构建工具，也没必要去安装 <a href="/2018/09/15/css/preprocessor/sass/">Sass</a> 需要的 Ruby 环境，其实 Less 才是你的首选！</p>
+</blockquote>
+<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><ul>
+<li><a href="http://lesscss.cn/" target="_blank" rel="noopener">中文官网</a></li>
+<li><a href="http://koala-app.com/index-zh.html" target="_blank" rel="noopener">Koala 编译器</a></li>
+</ul>
+<h2 id="相关教程"><a href="#相关教程" class="headerlink" title="相关教程"></a>相关教程</h2><ul>
+<li><a href="http://www.bootcss.com/p/lesscss/" target="_blank" rel="noopener">bootstrap</a></li>
+<li><a href="https://www.imooc.com/learn/102" target="_blank" rel="noopener">慕课 - less 即学即用</a></li>
+</ul>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol>
+<li>下载 <code>Koala 编译器</code>，一键安装，就可以开始撸码了</li>
+<li><p>命令行工具</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 全局下载 less</span></span><br><span class="line">npm install -g less</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 styles.less 编译成 styles.css</span></span><br><span class="line">lessc styles.less styles.css</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者压缩处理</span></span><br><span class="line">lessc styles.less styles.min.css</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>还有其他项目构建工具，Grunt/Gulp/Webpack 等请自行查阅资料</p>
+</li>
+</ol>
+<hr>
+
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h4 id="1-变量"><a href="#1-变量" class="headerlink" title="1. 变量"></a>1. 变量</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 颜色变量</span></span><br><span class="line"><span class="variable">@bgColor:</span> <span class="number">#336699</span>;</span><br><span class="line"><span class="variable">@bdColor:</span> <span class="number">#993366</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 所有的变量声明都是像 js 的 function 一样会提升至最前面</span></span><br><span class="line"><span class="comment">// &#123;&#125; 符号第一行，或当前页第一行</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@height:</span> <span class="number">18px</span>;</span><br><span class="line"><span class="variable">@link:</span> <span class="number">#369</span>;</span><br><span class="line"><span class="variable">@hover:</span> <span class="number">#963</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 嵌套规则 */</span></span><br><span class="line"><span class="selector-tag">aside</span> &#123;</span><br><span class="line">  <span class="selector-tag">header</span> &#123; <span class="attribute">font-size</span>: <span class="variable">@height</span>; &#125;</span><br><span class="line">  <span class="selector-tag">p</span> &#123; <span class="attribute">line-height</span>: <span class="variable">@height</span> * <span class="number">2</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="selector-tag">aside</span> <span class="selector-tag">header</span> &#123; <span class="attribute">font-size</span>: <span class="number">18px</span>; &#125;</span><br><span class="line"><span class="selector-tag">aside</span> <span class="selector-tag">p</span> &#123; <span class="attribute">line-height</span>: <span class="number">36px</span>; &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 伪类，使用 &amp; 符号代替自身（父选择器）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="variable">@link</span>;</span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-pseudo">:hover</span> &#123; <span class="attribute">color</span>: <span class="variable">@hover</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="selector-tag">a</span> &#123; <span class="attribute">color</span>: <span class="number">#369</span>; &#125;</span><br><span class="line"><span class="attribute">a</span>:hover &#123; <span class="attribute">color</span>: <span class="number">#964</span>; &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-继承"><a href="#3-继承" class="headerlink" title="3. 继承"></a>3. 继承</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 作为一个基类/标签选择器存在与 css 中，提供给某些标签引用</span></span><br><span class="line"><span class="selector-class">.base-header</span> &#123;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: normal;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#444</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用 `&amp;:extend(.base-header)` 的方式引入基类样式</span></span><br><span class="line"><span class="selector-class">.h1-header</span> &#123;</span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-pseudo">:extend(.base-header)</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">24px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="selector-class">.h1-header</span>,</span><br><span class="line"><span class="selector-class">.base-header</span> &#123;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: normal;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#444</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.h1-header</span> &#123;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">24px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意：</span></span><br><span class="line"><span class="comment">// extend 是全文匹配</span></span><br><span class="line">*<span class="selector-class">.class</span>,</span><br><span class="line"><span class="selector-class">.a</span><span class="selector-class">.class</span>,</span><br><span class="line"><span class="selector-class">.class</span><span class="selector-class">.a</span>,</span><br><span class="line"><span class="selector-class">.class</span> &gt; <span class="selector-class">.a</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: blue,</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 没有继承到样式</span></span><br><span class="line"><span class="selector-class">.test</span><span class="selector-pseudo">:extend(.class)</span> &#123;&#125;</span><br><span class="line"><span class="comment">// nth-child(n+4) 也不会被匹配到</span></span><br><span class="line"><span class="comment">// 但属性样式会被匹配</span></span><br><span class="line"><span class="selector-class">.test</span><span class="selector-pseudo">:extend(</span><span class="selector-attr">[title=identifier]</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 伪类也不会被匹配到</span></span><br><span class="line"><span class="comment">// 但可以使用 all 字段</span></span><br><span class="line"><span class="selector-class">.test</span><span class="selector-pseudo">:extend(a</span> <span class="keyword">all</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-占位符（Mixins）"><a href="#4-占位符（Mixins）" class="headerlink" title="4. 占位符（Mixins）"></a>4. 占位符（<code>Mixins</code>）</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// less 没有占位符的概念，所以可以使用混合器空参来代替</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 当上面第 3 条中，`.base-header` 基类根本就没有标签使用，</span></span><br><span class="line"><span class="comment"> * 我们只是把公共的样式提取出来，为以后做维护方便，</span></span><br><span class="line"><span class="comment"> * 不需要将其编译成单独的 css 样式，</span></span><br><span class="line"><span class="comment"> * 这时候我们就要在基类后面加上 () 即可</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="selector-class">.base-header</span>() &#123;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: normal;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#444</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用 `.base-header()` 的方式引入</span></span><br><span class="line"><span class="selector-class">.h1-header</span> &#123;</span><br><span class="line">  <span class="comment">// .base-header();</span></span><br><span class="line">  <span class="comment">// 空参数可去掉括号</span></span><br><span class="line">  <span class="selector-class">.base-header</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">24px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="selector-class">.h1-header</span>,</span><br><span class="line"><span class="selector-class">.base-header</span> &#123;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: normal;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#444</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.h1-header</span> &#123;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">24px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="5-混合器（Mixins）"><a href="#5-混合器（Mixins）" class="headerlink" title="5. 混合器（Mixins）"></a>5. 混合器（<code>Mixins</code>）</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 定义一个混合器叫“ellipsis”，功能为：内容超出宽度时显示省略号。</span></span><br><span class="line"><span class="comment"> * 接收一个参数：宽度，默认值为 auto</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="selector-class">.ellipsis</span>(<span class="variable">@width</span>: auto) &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">@width</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 使用时，`.ellipsis()` 即可</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="selector-class">.header-careful</span> &#123;</span><br><span class="line">  <span class="selector-class">.ellipsis</span>(<span class="number">60%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="6-运算"><a href="#6-运算" class="headerlink" title="6. 运算"></a>6. 运算</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加减乘除</span></span><br><span class="line"><span class="variable">@height:</span> <span class="number">18px</span>;</span><br><span class="line"><span class="comment">// less 自动忽略单位，如不一致时会取第一个带有单位的值的单位</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="variable">@heigth</span> + <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="variable">@height</span> * <span class="number">2</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="variable">@height</span> / <span class="number">3</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="variable">@height</span> - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">    <span class="comment">// 使用 @&#123;&#125; 包裹住动态值</span></span><br><span class="line">    <span class="attribute">content</span>: <span class="string">"行高为 @&#123;height * 2&#125;"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://blog.mrsuper.top/2018/09/18/css/preprocessor/less/" data-id="cjlxcsjwq00820tzl8eyf1p90" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="SOHUCS" sid="http://blog.mrsuper.top/2018/09/18/css/preprocessor/less/"></div>
+
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/linzechao" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="https://weibo.com/superchao4444" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="renren" href="http://www.renren.com/358733940" target="_blank">
+                        <i class="icon fa fa-renren"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="pinterest-square" href="http://t.qq.com/linzechao" target="_blank">
+                        <i class="icon fa fa-pinterest-square"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="whatsapp" href="https://disqus.com/by/disqus_bOa47tDqFp/" target="_blank">
+                        <i class="icon fa fa-whatsapp"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/09/21/css/preprocessor/compass/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            基于 Sass 开发的 Compass
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/09/15/css/preprocessor/sass/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">最火的样式预处理器 SASS</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/09/21/css/preprocessor/compass/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/compass.png)" alt="基于 Sass 开发的 Compass" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CSS/">CSS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CSS/SASS/">SASS</a></p>
+                            <p class="item-title"><a href="/2018/09/21/css/preprocessor/compass/" class="title">基于 Sass 开发的 Compass</a></p>
+                            <p class="item-date"><time datetime="2018-09-20T20:58:08.000Z" itemprop="datePublished">2018-09-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/09/18/css/preprocessor/less/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/less.png)" alt="Less 是一门 CSS 预处理器" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CSS/">CSS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CSS/LESS/">LESS</a></p>
+                            <p class="item-title"><a href="/2018/09/18/css/preprocessor/less/" class="title">Less 是一门 CSS 预处理器</a></p>
+                            <p class="item-date"><time datetime="2018-09-18T15:47:11.000Z" itemprop="datePublished">2018-09-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/09/15/css/preprocessor/sass/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/sass.png)" alt="最火的样式预处理器 SASS" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CSS/">CSS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CSS/SASS/">SASS</a></p>
+                            <p class="item-title"><a href="/2018/09/15/css/preprocessor/sass/" class="title">最火的样式预处理器 SASS</a></p>
+                            <p class="item-date"><time datetime="2018-09-15T14:28:40.000Z" itemprop="datePublished">2018-09-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/09/11/other/project/js-tools/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/clipboard.png)" alt="实际开发中超实用工具和插件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Other/">Other</a></p>
+                            <p class="item-title"><a href="/2018/09/11/other/project/js-tools/" class="title">实际开发中超实用工具和插件</a></p>
+                            <p class="item-date"><time datetime="2018-09-11T13:59:08.000Z" itemprop="datePublished">2018-09-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/09/07/other/wx/applet/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://asset.mrsuper.top/blog/concept/thumb/wx-applet.jpeg)" alt="微信小程序，了解一下" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Other/">Other</a></p>
+                            <p class="item-title"><a href="/2018/09/07/other/wx/applet/" class="title">微信小程序，了解一下</a></p>
+                            <p class="item-date"><time datetime="2018-09-06T17:17:17.000Z" itemprop="datePublished">2018-09-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/applet/" style="font-size: 10px;">applet</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/casual/" style="font-size: 10px;">casual</a> <a href="/tags/command/" style="font-size: 10px;">command</a> <a href="/tags/compass/" style="font-size: 10px;">compass</a> <a href="/tags/create-react-app/" style="font-size: 10px;">create-react-app</a> <a href="/tags/cross-domain/" style="font-size: 10px;">cross domain</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/driving-car/" style="font-size: 10px;">driving car</a> <a href="/tags/english/" style="font-size: 12px;">english</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/gvim/" style="font-size: 10px;">gvim</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/interview/" style="font-size: 12px;">interview</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/linux/" style="font-size: 18px;">linux</a> <a href="/tags/live/" style="font-size: 12px;">live</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/module/" style="font-size: 14px;">module</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/other/" style="font-size: 14px;">other</a> <a href="/tags/react/" style="font-size: 16px;">react</a> <a href="/tags/redux/" style="font-size: 10px;">redux</a> <a href="/tags/sass/" style="font-size: 10px;">sass</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/system/" style="font-size: 12px;">system</a> <a href="/tags/tools/" style="font-size: 20px;">tools</a> <a href="/tags/umi/" style="font-size: 10px;">umi</a> <a href="/tags/vue/" style="font-size: 12px;">vue</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/work/" style="font-size: 12px;">work</a> <a href="/tags/wx/" style="font-size: 10px;">wx</a> <a href="/tags/zero-based/" style="font-size: 16px;">zero-based</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com">Github</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.aliyun.com">AliYun</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/ppoffice/hexo-theme-hueman">Hueman</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.qiniu.com">QiNiu</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://changyan.kuaizhan.com">ChangYan</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://coding.net">Coding</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Super</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+                <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytENM45X"></script>
+    <script type="text/javascript">
+        (function() {
+            var appid = 'cytENM45X';
+            var conf = 'cecbda85f26c31168a76fef4aaa3b6e8';
+            var width = window.innerWidth || document.documentElement.clientWidth;
+            if (width < 960) {
+                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+            } else {
+                var loadJs = function(d, a) {
+                    var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+                    var b = document.createElement("script");
+                    b.setAttribute("type", "text/javascript");
+                    b.setAttribute("charset", "UTF-8");
+                    b.setAttribute("src", d);
+                    if (typeof a === "function") {
+                        if (window.attachEvent) {
+                            b.onreadystatechange = function() {
+                                var e = b.readyState;
+                                if (e === "loaded" || e === "complete") {
+                                    b.onreadystatechange = null;
+                                    a()
+                                }
+                            }
+                        } else {
+                            b.onload = a
+                        }
+                    }
+                    c.appendChild(b)
+                };
+                loadJs("https://changyan.sohu.com/upload/changyan.js", function() {
+                    window.changyan.api.config({
+                        appid: appid,
+                        conf: conf
+                    })
+                });
+            }
+        })();
+    </script>
+
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
